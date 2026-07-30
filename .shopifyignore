@@ -1,0 +1,8 @@
+README.md
+docs/
+.github/
+.gitignore
+.shopifyignore
+package.json
+package-lock.json
+node_modules/

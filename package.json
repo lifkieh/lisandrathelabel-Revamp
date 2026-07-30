@@ -1,0 +1,16 @@
+{
+  "name": "lisandra-theme",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shopify Horizon theme untuk Lisandra The Label",
+  "scripts": {
+    "dev": "shopify theme dev --store lisandrathelabel.com",
+    "check": "shopify theme check",
+    "pull:live": "shopify theme pull --store lisandrathelabel.com --live",
+    "push:wip": "shopify theme push --unpublished --store lisandrathelabel.com",
+    "share": "shopify theme share --store lisandrathelabel.com"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^3"
+  }
+}

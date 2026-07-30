@@ -1,0 +1,16 @@
+node_modules/
+.shopify/
+.DS_Store
+*.log
+.env
+.env.*
+
+# Hasil export sementara
+tmp/
+dist/
+
+# CATATAN soal settings_data.json:
+# File ini menyimpan SEMUA konfigurasi theme editor (isi section, teks, gambar).
+# File ini TIDAK di-ignore — harus ikut ter-commit, karena layouting kita ada di sini.
+# Tapi: jangan pernah commit hasil `theme pull` dari tema live di tengah pekerjaan,
+# karena akan menimpa konfigurasi WIP. Pull settings hanya saat sinkronisasi terencana.

@@ -1,0 +1,57 @@
+{%- comment -%}
+  Craft spec strip — elemen signature Lisandra.
+  Satu baris fakta produksi yang benar, menggantikan badge "sustainable" generik.
+  Uniqlo/H&M tidak bisa meniru ini; itu sebabnya blok ini ada.
+
+  Sumber data (buat dulu di Settings > Custom data > Products):
+    custom.craft_spec     single line text   contoh: "Hand-knit"
+    custom.days_to_make   integer            contoh: 2
+    custom.batch_size     integer            contoh: 12
+
+  Fallback: kalau metafield kosong, blok tidak merender apa pun.
+  Jangan pernah menampilkan angka default yang mengarang.
+{%- endcomment -%}
+
+{%- liquid
+  assign p = product | default: closest.product
+  assign spec  = p.metafields.custom.craft_spec.value
+  assign days  = p.metafields.custom.days_to_make.value
+  assign batch = p.metafields.custom.batch_size.value
+  assign material = p.metafields.custom.yarn.value
+-%}
+
+{%- if spec or days or batch -%}
+  {%- capture parts -%}
+    {%- if spec -%}{{ spec }}{%- endif -%}
+    {%- if days -%} · {{ days }} {% if days == 1 %}day{% else %}days{% endif %} per piece{%- endif -%}
+    {%- if batch -%} · Batch of {{ batch }}{%- endif -%}
+    {%- if material -%} · {{ material }}{%- endif -%}
+    {%- if block.settings.show_origin -%} · {{ block.settings.origin }}{%- endif -%}
+  {%- endcapture -%}
+
+  <p class="ls-spec ls-craft-spec {% if block.settings.style == 'pdp' %}ls-craft-spec--pdp{% endif %}"
+     {{ block.shopify_attributes }}>
+    {{ parts | strip }}
+  </p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Craft spec",
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Placement",
+      "options": [
+        { "value": "card", "label": "Product card" },
+        { "value": "pdp", "label": "Product page (with rules)" }
+      ],
+      "default": "card"
+    },
+    { "type": "checkbox", "id": "show_origin", "label": "Show origin", "default": true },
+    { "type": "text", "id": "origin", "label": "Origin", "default": "Bali" }
+  ],
+  "presets": [{ "name": "Craft spec" }]
+}
+{% endschema %}

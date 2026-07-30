@@ -1,0 +1,20 @@
+extends: theme-check:recommended
+
+TemplateLength:
+  enabled: true
+  max_length: 200
+
+UndefinedObject:
+  enabled: true
+
+MissingTemplate:
+  enabled: true
+
+# Aset kita sengaja di luar konvensi penamaan Horizon supaya mudah dikenali saat merge
+AssetSizeCSS:
+  enabled: true
+  threshold_in_bytes: 40000
+
+AssetSizeJavaScript:
+  enabled: true
+  threshold_in_bytes: 20000

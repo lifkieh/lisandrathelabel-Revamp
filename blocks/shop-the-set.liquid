@@ -1,0 +1,71 @@
+{%- comment -%}
+  "Wear it as a set" — pendorong AOV terbesar yang tersedia di katalog saat ini.
+  Pasangan yang sudah ada dan belum dibundel: Amara, Tala, Maia, Cieli, Baia,
+  Sira, Aruna (top + bottom), serta Orla & Zena (bikini top + bottom).
+
+  Sumber data:
+    custom.pairs_with   product reference (list)
+
+  Catatan: blok ini menampilkan penawaran dan menambahkan kedua item ke cart.
+  Diskon 10%-nya sendiri harus dibuat sebagai automatic discount di admin
+  ATAU lewat app Shopify Bundles — jangan hardcode harga di sini,
+  karena harga di storefront dan harga di checkout harus selalu sama.
+{%- endcomment -%}
+
+{%- liquid
+  assign p = product | default: closest.product
+  assign pairs = p.metafields.custom.pairs_with.value
+-%}
+
+{%- if pairs != blank -%}
+  {%- assign partner = pairs.first -%}
+  {%- if partner.available -%}
+    {%- assign total = p.price | plus: partner.price -%}
+    {%- assign discounted = total | times: block.settings.discount_pct | divided_by: 100 -%}
+    {%- assign bundle_price = total | minus: discounted -%}
+
+    <section class="ls-set" {{ block.shopify_attributes }}>
+      <h2 class="ls-display-m">{{ block.settings.heading }}</h2>
+      <p>{{ block.settings.body }}</p>
+
+      <div class="ls-set__items">
+        {%- for item in pairs limit: 1 -%}
+          <a href="{{ item.url }}" class="ls-set__item">
+            {{ item.featured_image | image_url: width: 600 | image_tag:
+               loading: 'lazy', alt: item.featured_image.alt | default: item.title }}
+            <span>{{ item.title }}</span>
+          </a>
+        {%- endfor -%}
+      </div>
+
+      <p class="ls-price">
+        <s>{{ total | money }}</s>
+        <strong>{{ bundle_price | money }}</strong>
+      </p>
+
+      <form method="post" action="{{ routes.cart_add_url }}">
+        <input type="hidden" name="items[0][id]" value="{{ p.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="items[0][quantity]" value="1">
+        <input type="hidden" name="items[1][id]" value="{{ partner.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="items[1][quantity]" value="1">
+        <button type="submit" class="ls-btn ls-btn--block">{{ block.settings.cta }}</button>
+      </form>
+    </section>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Shop the set",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Wear it as a set" },
+    { "type": "text", "id": "body", "label": "Body",
+      "default": "Knit from the same dye lot, so the colour matches exactly." },
+    { "type": "text", "id": "cta", "label": "Button", "default": "Add the set" },
+    { "type": "range", "id": "discount_pct", "label": "Set discount (%)",
+      "min": 0, "max": 30, "step": 5, "default": 10,
+      "info": "Harus cocok dengan automatic discount di Settings > Discounts. Kalau tidak cocok, harga di checkout akan berbeda dari yang ditampilkan." }
+  ],
+  "presets": [{ "name": "Shop the set" }]
+}
+{% endschema %}
