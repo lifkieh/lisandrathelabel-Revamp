@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lisandra The Label — v3 (Shopify Atelier, Horizon preset)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf7f2; --ink:#3a332c; --ink60:#8a8076; --line:#e6dfd4; --accent:#3a332c;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Jost",-apple-system,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#d8d2c9;font-family:var(--sans);color:var(--ink);font-size:15px;line-height:1.6;font-weight:300}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+.doc{max-width:1320px;margin:0 auto;padding:26px clamp(14px,3vw,36px) 70px}
+.doc h1{font-family:var(--serif);font-weight:400;font-size:clamp(26px,4.4vw,42px);margin:0 0 8px}
+.doc>p{margin:0 0 22px;max-width:68ch;color:#463b34;font-family:"Jost",sans-serif}
+.frame{background:var(--bg);border:1px solid #c6bfb4}
+.tag{display:inline-block;background:#2e2320;color:#fff;font-size:10px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;margin-bottom:12px}
+
+/* ---------- header: logo tengah, nav minimal (ciri Atelier) ---------- */
+.ann{text-align:center;padding:9px 12px;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink60);border-bottom:1px solid var(--line)}
+.hdr{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:26px clamp(16px,3vw,40px) 22px}
+.hdr nav{display:flex;gap:26px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.brand{font-family:var(--serif);font-size:clamp(22px,3.4vw,32px);font-weight:400;
+  letter-spacing:.3em;text-transform:uppercase;text-align:center;white-space:nowrap}
+.hdr .right{display:flex;gap:20px;justify-content:flex-end;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- hero: full-bleed, teks tengah ---------- */
+.hero{position:relative;height:clamp(460px,80vh,720px)}
+.hero>img{filter:brightness(.94)}
+.hero-in{position:absolute;inset:0;display:grid;place-content:center;text-align:center;
+  color:#fff;padding:0 24px}
+.hero-in span{font-size:11px;letter-spacing:.26em;text-transform:uppercase}
+.hero-in h2{font-family:var(--serif);font-weight:300;font-size:clamp(38px,6.6vw,80px);
+  line-height:1.05;margin:16px 0 22px;max-width:16ch}
+.link{display:inline-block;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  border-bottom:1px solid currentColor;padding-bottom:5px}
+
+/* ---------- editorial bergantian ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0}
+.split figure{margin:0;aspect-ratio:4/5}
+.split .copy{padding:clamp(28px,6vw,90px);text-align:center}
+.split h3{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4vw,46px);margin:0 0 18px;line-height:1.12}
+.split p{margin:0 auto 26px;max-width:44ch;color:#5d554c}
+.split.rev figure{order:2}
+
+/* ---------- grid produk 3-up, longgar ---------- */
+.sec{padding:clamp(50px,8vw,110px) clamp(16px,3vw,40px);text-align:center}
+.sec h3{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4vw,46px);margin:0 0 12px}
+.sec>p{margin:0 auto 46px;max-width:46ch;color:var(--ink60)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,44px);text-align:center}
+.card figure{margin:0 0 16px;aspect-ratio:3/4;background:#efe9e0;overflow:hidden}
+.card figure img{transition:transform .8s ease}
+.card:hover figure img{transform:scale(1.03)}
+.card h4{font-family:var(--serif);font-weight:400;font-size:20px;margin:0 0 5px}
+.card p{margin:0;font-size:14px;color:var(--ink60);letter-spacing:.04em}
+
+/* ---------- quote ---------- */
+.quote{padding:clamp(50px,8vw,110px) clamp(16px,3vw,40px);text-align:center;border-top:1px solid var(--line)}
+.quote blockquote{font-family:var(--serif);font-weight:300;font-size:clamp(22px,3.2vw,36px);
+  line-height:1.35;margin:0 auto;max-width:22ch}
+.quote cite{display:block;margin-top:22px;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;font-style:normal;color:var(--ink60)}
+
+/* ---------- newsletter + footer ---------- */
+.news{padding:clamp(46px,7vw,90px) clamp(16px,3vw,40px);text-align:center;background:#f2ece3}
+.news h3{font-family:var(--serif);font-weight:300;font-size:clamp(24px,3.4vw,38px);margin:0 0 10px}
+.news p{margin:0 auto 24px;max-width:40ch;color:var(--ink60)}
+.news form{display:flex;max-width:400px;margin:0 auto;border-bottom:1px solid var(--ink)}
+.news input{flex:1;border:0;background:none;padding:12px 2px;font:inherit;outline:0}
+.news button{font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:0 4px}
+.foot{padding:44px clamp(16px,3vw,40px) 30px;border-top:1px solid var(--line);text-align:center}
+.foot nav{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px}
+.foot small{color:var(--ink60);font-size:11.5px;letter-spacing:.1em}
+
+/* ---------- panel penilaian ---------- */
+.verdict{margin-top:26px;background:#fff;border:1px solid #c6bfb4;padding:clamp(18px,3vw,30px)}
+.verdict h2{font-family:"Jost",sans-serif;font-size:15px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;margin:0 0 16px}
+.verdict table{width:100%;border-collapse:collapse;font-size:14px}
+.verdict th,.verdict td{text-align:left;padding:9px 10px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.verdict th{font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink60)}
+.yes{color:#3f6b45}.no{color:#9a3f2b}
+
+@media(max-width:860px){
+  .split,.split.rev{grid-template-columns:1fr}
+  .split.rev figure{order:0}
+  .grid{grid-template-columns:1fr 1fr}
+  .hdr{grid-template-columns:1fr}
+  .hdr nav,.hdr .right{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="doc">
+  <h1>v3 — Shopify <em>Atelier</em> (preset Horizon, gratis)</h1>
+  <p>Dari 10 preset Horizon (Horizon, Atelier, Fabric, Dwell, Heritage, Ritual, Savor, Tinker,
+     Vessel, Pitch), <strong>Atelier</strong> yang paling dekat dengan Lisandra: preset ini memang
+     diposisikan untuk brand handmade/artisan dengan layout editorial, galeri lapang, dan ruang
+     bercerita. Ini rendering bahasa desainnya dengan konten Lisandra — interpretasi dari arah
+     desain resminya, bukan salinan piksel demo. Perhatikan bedanya dengan v2: jauh lebih lapang,
+     jauh lebih sedikit informasi per layar.</p>
+
+  <span class="tag">Homepage — stock Atelier</span>
+  <div class="frame">
+
+    <div class="ann">Free shipping across Indonesia · Worldwide free over USD 200</div>
+
+    <header class="hdr">
+      <nav><a href="#">Shop</a><a href="#">Collections</a><a href="#">Our Story</a></nav>
+      <a class="brand" href="#">Lisandra</a>
+      <div class="right"><a href="#">Search</a><a href="#">Account</a><a href="#">Cart (0)</a></div>
+    </header>
+
+    <section class="hero">
+      <img src="https://lisandrathelabel.com/cdn/shop/files/NEW_COLLECTION-3_9934ceb5-60f5-4a8d-b332-e375f525e03c.jpg?width=1800" alt="Cielo Tropico campaign">
+      <div class="hero-in">
+        <span>Cielo Tropico</span>
+        <h2>Made slowly, for the long evenings</h2>
+        <a class="link" href="#">Shop the collection</a>
+      </div>
+    </section>
+
+    <section class="split">
+      <figure><img src="https://lisandrathelabel.com/cdn/shop/files/Untitled_design-17.jpg?width=1000" alt="Zaye hand-knit maxi dress"></figure>
+      <div class="copy">
+        <h3>Knit by hand, in Bali</h3>
+        <p>Every piece is hand-knit or crocheted in small batches by local Balinese artisans we know
+           by name. Made slowly, with care at every stitch.</p>
+        <a class="link" href="#">Our story</a>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h3>New arrivals</h3>
+      <p>Hand-knit pieces from the current batch.</p>
+      <div class="grid">
+        <article class="card">
+          <figure><img src="https://lisandrathelabel.com/cdn/shop/files/Untitled_design-17.jpg?width=800" alt="Zaye dress cocoa"></figure>
+          <h4>Zaye Dress Cocoa</h4>
+          <p>Rp 1.999.000</p>
+        </article>
+        <article class="card">
+          <figure><img src="https://lisandrathelabel.com/cdn/shop/collections/3_4d6c0bc3-b1a3-46f9-89ff-720e38cdd2c3.jpg?width=800" alt="Amara top beige"></figure>
+          <h4>Amara Top Beige</h4>
+          <p>Rp 899.000</p>
+        </article>
+        <article class="card">
+          <figure><img src="https://lisandrathelabel.com/cdn/shop/collections/Untitled_design-18.jpg?width=800" alt="Mentari dress butter yellow"></figure>
+          <h4>Mentari Dress Butter Yellow</h4>
+          <p>Rp 1.499.000</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="split rev">
+      <figure><img src="https://lisandrathelabel.com/cdn/shop/files/MEGAN_7.jpg?width=1000" alt="Knit detail"></figure>
+      <div class="copy">
+        <h3>Goddess silhouettes for the sun-drenched woman</h3>
+        <p>Feminine, effortless, quietly magnetic. Pieces that sculpt softly, move with you, and feel
+           as good as they look.</p>
+        <a class="link" href="#">Shop dresses</a>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h3>Best sellers</h3>
+      <div class="grid">
+        <article class="card">
+          <figure><img src="https://lisandrathelabel.com/cdn/shop/files/1_e758ea44-ebb1-49e2-a498-63c71f459410.jpg?width=800" alt="Baia crochet top"></figure>
+          <h4>Baia Crochet Top</h4>
+          <p>Rp 1.199.000</p>
+        </article>
+        <article class="card">
+          <figure><img src="https://lisandrathelabel.com/cdn/shop/collections/5.jpg?width=800" alt="Orla bikini top"></figure>
+          <h4>Orla Bikini Top</h4>
+          <p>Rp 725.000</p>
+        </article>
+        <article class="card">
+          <figure><img src="https://lisandrathelabel.com/cdn/shop/files/2_34953080-8e76-4225-b7d0-3a776f32c85e.jpg?width=800" alt="Amara wrap skirt"></figure>
+          <h4>Amara Wrap Skirt Beige</h4>
+          <p>Rp 999.000</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="quote">
+      <blockquote>Rooted in island living, inspired by generations-old craft.</blockquote>
+      <cite>Lisandra The Label</cite>
+    </section>
+
+    <section class="news">
+      <h3>Join the list</h3>
+      <p>Sign up for 10% off your first order, exclusive offers, and early access to new drops.</p>
+      <form onsubmit="return false">
+        <input type="email" placeholder="Email" aria-label="Email">
+        <button type="submit">Sign up</button>
+      </form>
+    </section>
+
+    <footer class="foot">
+      <nav>
+        <a href="#">Our story</a><a href="#">Contact</a><a href="#">Stockists</a>
+        <a href="#">FAQs</a><a href="#">Size guide</a><a href="#">Shipping</a><a href="#">Returns</a>
+      </nav>
+      <small>© 2026 Lisandra The Label · Powered by Shopify</small>
+    </footer>
+  </div>
+
+  <!-- ---------- penilaian jujur ---------- -->
+  <div class="verdict">
+    <h2>Apa yang didapat dan apa yang hilang</h2>
+    <table>
+      <tr><th style="width:34%">Hal</th><th style="width:33%">Atelier apa adanya</th><th>Konsekuensi</th></tr>
+      <tr><td>Waktu setup</td><td class="yes">2–3 hari</td><td>Jauh lebih cepat dari v2</td></tr>
+      <tr><td>Biaya tema</td><td class="yes">Gratis</td><td>Sama seperti v2 — dua-duanya Horizon</td></tr>
+      <tr><td>Kesan brand</td><td class="yes">Kuat, editorial, mahal</td><td>Cocok untuk cerita artisan</td></tr>
+      <tr><td>Produk per layar</td><td class="no">3, dengan whitespace besar</td><td>Katalog 31 produk butuh scroll panjang; v2 menampilkan 5 per baris</td></tr>
+      <tr><td>Info di product card</td><td class="no">Judul + harga saja</td><td>Tanpa swatch, rating, sisa stok, "model wears" — semua sinyal yang mendorong klik</td></tr>
+      <tr><td>Craft spec strip</td><td class="no">Tidak ada</td><td>Elemen pembeda utama hilang; butuh blok custom (sudah ada di repo)</td></tr>
+      <tr><td>Shop the set</td><td class="no">Tidak ada</td><td>Pendorong AOV terbesar hilang; butuh blok custom + Shopify Bundles</td></tr>
+      <tr><td>Search</td><td class="no">Ikon, bukan input</td><td>Uniqlo menaruh input yang terlihat karena search-driven session konversinya jauh lebih tinggi</td></tr>
+      <tr><td>Mega menu</td><td class="no">Nav sederhana</td><td>6 kategori masih muat, tapi tidak ada jalur "by length/technique/colour"</td></tr>
+      <tr><td>Hero</td><td class="no">Full-screen</td><td>Produk pertama baru muncul setelah scroll penuh</td></tr>
+      <tr><td>Nama produk</td><td class="no">Warna ikut di judul</td><td>Masalah katalog, bukan masalah tema — tetap harus diperbaiki</td></tr>
+    </table>
+    <p style="margin:16px 0 0;font-size:13.5px;color:#5d554c">
+      Atelier bukan pilihan yang salah — ini titik start terbaik kalau prioritasnya kecepatan dan
+      kesan brand. Tapi apa adanya, dia menjual <em>suasana</em>, bukan produk. Alternatif terdekat:
+      <strong>Fabric</strong> (grid foto edge-to-edge, swatch besar, mega menu bawaan — lebih dekat
+      ke disiplin Uniqlo/H&amp;M) dan <strong>Ritual</strong> (nuansa majalah fashion mewah).
+    </p>
+  </div>
+</div>
+</body>
+</html>
