@@ -1,0 +1,100 @@
+{
+  "brand": "Lisandra The Label",
+  "versions": [
+    {
+      "id": "v1",
+      "file": "design-direction-v2.html",
+      "label": "v1",
+      "sublabel": "Arah desain awal",
+      "notes": {
+        "summary": "Arah desain awal. Homepage + PDP. Menetapkan sistem: Bodoni Moda + Inter, radius 0, hairline sebagai satu-satunya pembatas, craft spec strip sebagai elemen penanda. Belum punya sistem navigasi.",
+        "added": [],
+        "effort": "referensi, tidak untuk dibangun",
+        "risks": []
+      }
+    },
+    {
+      "id": "v2",
+      "file": "design-v2.html",
+      "label": "v2",
+      "sublabel": "Navbar Uniqlo + grid custom",
+      "notes": {
+        "summary": "Navbar Uniqlo + grid custom.",
+        "added": [
+          "Utility bar",
+          "search sebagai input yang terlihat",
+          "mega menu multi-kolom",
+          "grid 5 kolom",
+          "promo tile",
+          "tab filter cepat",
+          "footer padat"
+        ],
+        "effort": "3–4 minggu di luar perbaikan katalog",
+        "risks": [
+          "paling banyak blok custom, jadi biaya merge paling tinggi setiap Shopify merilis update Horizon"
+        ]
+      }
+    },
+    {
+      "id": "v2-5",
+      "file": "design-v2-5.html",
+      "label": "v2.5",
+      "sublabel": "Atelier + perbaikan seperlunya",
+      "notes": {
+        "summary": "Atelier + perbaikan seperlunya. Basis preset Atelier, ditambah 8 komponen:",
+        "added": [
+          "search input",
+          "baris kategori",
+          "hero 62vh",
+          "grid 4 kolom",
+          "swatch",
+          "craft spec",
+          "\"model wears\"",
+          "badge stok",
+          "shop the set",
+          "notify me",
+          "trust row"
+        ],
+        "effort": "±1 minggu",
+        "risks": [
+          "bagian yang tidak disentuh tetap terasa template",
+          "grid 4 kolom masih lebih longgar dari kompetitor"
+        ]
+      }
+    },
+    {
+      "id": "v3",
+      "file": "design-v3-atelier.html",
+      "label": "v3",
+      "sublabel": "Shopify Atelier, stock",
+      "notes": {
+        "summary": "Shopify Atelier apa adanya.",
+        "added": [],
+        "effort": "2–3 hari",
+        "risks": [
+          "menjual suasana, bukan produk. Card hanya judul + harga, tanpa swatch, tanpa craft spec, tanpa shop-the-set, search hanya ikon, hero full-screen"
+        ]
+      }
+    },
+    {
+      "id": "v3-5",
+      "file": "design-v3-5.html",
+      "label": "v3.5",
+      "sublabel": "Permak penuh",
+      "notes": {
+        "summary": "Permak penuh.",
+        "added": [
+          "Homepage + PDP lengkap",
+          "mega menu",
+          "batch ledger",
+          "sel teks di dalam grid",
+          "sticky ATC mobile"
+        ],
+        "effort": "4–6 minggu bersama perbaikan katalog",
+        "risks": [
+          "batch ledger hanya boleh tayang kalau stok per batch memang dilacak; kalau tidak, angka sisa harus dihapus"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+/* Shell showcase — sengaja NETRAL. Abu-abu/putih, sans-serif sistem, minimal.
+   Shell tidak boleh terlihat seperti bagian dari desain yang sedang dinilai. */
+
+:root {
+  --shell-bg: #f4f4f5;
+  --shell-panel: #ffffff;
+  --shell-border: #d4d4d8;
+  --shell-ink: #27272a;
+  --shell-ink-soft: #71717a;
+  --shell-accent: #18181b;
+  --bar-h: 52px;
+}
+
+* { box-sizing: border-box; }
+
+/* Aturan display di bawah (mis. .single-view{display:flex}) menang atas UA
+   [hidden]{display:none}. Kembalikan supaya atribut hidden benar-benar menyembunyikan. */
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;            /* halaman tidak scroll; konten scroll di dalam iframe/panel */
+  background: var(--shell-bg);
+  color: var(--shell-ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+}
+
+/* ---- Top bar ---- */
+.bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: var(--bar-h);
+  padding: 6px 14px;
+  background: var(--shell-panel);
+  border-bottom: 1px solid var(--shell-border);
+  flex-wrap: wrap;
+}
+
+.bar-brand {
+  font-weight: 600;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+
+.bar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ---- Pill selector ---- */
+.pills {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  appearance: none;
+  border: 1px solid var(--shell-border);
+  background: var(--shell-panel);
+  color: var(--shell-ink);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font: inherit;
+  line-height: 1.2;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pill:hover { background: #fafafa; }
+
+.pill[aria-selected="true"] {
+  background: var(--shell-accent);
+  border-color: var(--shell-accent);
+  color: #fff;
+}
+
+.pill .pill-sub {
+  display: block;
+  font-size: 11px;
+  color: var(--shell-ink-soft);
+  font-weight: 400;
+}
+
+.pill[aria-selected="true"] .pill-sub { color: #d4d4d8; }
+
+/* Saat mode banding: pill terpilih ditandai centang, bukan tab tunggal */
+.pills.is-compare .pill[aria-selected="true"] .pill-label::before {
+  content: "✓ ";
+}
+
+/* ---- Buttons & segmented control ---- */
+.btn {
+  appearance: none;
+  border: 1px solid var(--shell-border);
+  background: var(--shell-panel);
+  color: var(--shell-ink);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn:hover { background: #fafafa; }
+
+.btn[aria-pressed="true"] {
+  background: var(--shell-accent);
+  border-color: var(--shell-accent);
+  color: #fff;
+}
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--shell-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.seg-btn {
+  appearance: none;
+  border: 0;
+  border-left: 1px solid var(--shell-border);
+  background: var(--shell-panel);
+  color: var(--shell-ink);
+  font: inherit;
+  padding: 6px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.seg-btn:first-child { border-left: 0; }
+.seg-btn:hover { background: #fafafa; }
+
+.seg-btn[aria-pressed="true"] {
+  background: var(--shell-accent);
+  color: #fff;
+}
+
+/* Focus visible di mana pun */
+.pill:focus-visible,
+.btn:focus-visible,
+.seg-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* ---- Banner peringatan (persisten) ---- */
+.banner {
+  flex: 0 0 auto;
+  background: #fef3c7;
+  color: #78350f;
+  border-bottom: 1px solid #fcd34d;
+  padding: 8px 14px;
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+/* ---- Petunjuk mode banding ---- */
+.hint {
+  flex: 0 0 auto;
+  background: #eef2ff;
+  color: #3730a3;
+  border-bottom: 1px solid #c7d2fe;
+  padding: 6px 14px;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ---- Workspace (stage + panel catatan) ---- */
+.workspace {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.stage {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  padding: 16px;
+}
+
+/* Tampilan satu versi */
+.single-view {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+}
+
+.frame-wrap {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: safe center;   /* iframe di tengah; 'safe' cegah clip saat overflow */
+  overflow: auto;
+}
+
+/* Lebar iframe diubah SUNGGUHAN (px), bukan transform: scale()/zoom.
+   Hanya width nyata yang membuat media query di dalam dokumen versi menyala. */
+.frame {
+  flex: 0 0 auto;
+  width: 100%;              /* Desktop single; ditimpa inline oleh JS */
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+.frame.is-framed {
+  border: 1px solid var(--shell-border);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, .06);
+}
+
+/* ---- Tampilan banding ---- */
+.compare-view {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 16px;
+  justify-content: safe center;
+  overflow: auto;                 /* dua iframe lebar-nyata: kalau tak muat, scroll horizontal */
+}
+
+.pane {
+  flex: 0 0 auto;                 /* BUKAN flex:1 / 50%: tiap iframe pakai lebar viewport nyata */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pane-head {
+  flex: 0 0 auto;
+  padding: 4px 2px 8px;
+  font-size: 12px;
+  color: var(--shell-ink-soft);
+}
+
+.pane-head b { color: var(--shell-ink); font-weight: 600; }
+
+.pane .frame { height: 100%; }
+
+/* Layar sempit: tumpuk vertikal, tiap iframe scroll sendiri */
+@media (max-width: 900px) {
+  .compare-view {
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+  }
+}
+
+/* ---- Panel catatan ---- */
+.notes {
+  flex: 0 0 320px;
+  border-left: 1px solid var(--shell-border);
+  background: var(--shell-panel);
+  overflow: auto;
+  padding: 16px 18px;
+}
+
+.notes h2 {
+  margin: 0 0 2px;
+  font-size: 15px;
+}
+
+.notes .notes-sub {
+  margin: 0 0 14px;
+  color: var(--shell-ink-soft);
+  font-size: 12px;
+}
+
+.notes h3 {
+  margin: 16px 0 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--shell-ink-soft);
+}
+
+.notes p { margin: 0 0 8px; line-height: 1.45; }
+.notes ul { margin: 0; padding-left: 18px; }
+.notes li { margin: 2px 0; line-height: 1.4; }
+.notes .notes-block + .notes-block { border-top: 1px solid var(--shell-border); padding-top: 8px; }
+
+/* Panel jadi overlay di layar sempit */
+@media (max-width: 700px) {
+  .notes {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(90vw, 340px);
+    z-index: 20;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, .12);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pill, .btn, .seg-btn { transition: background .12s ease; }
+}

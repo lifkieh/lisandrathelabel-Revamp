@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Showcase — Lisandra The Label</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-brand" id="brand">Showcase</div>
+
+    <nav class="pills" id="pills" role="tablist" aria-label="Pilih versi desain"></nav>
+
+    <div class="bar-right">
+      <button class="btn" id="compare-toggle" type="button" aria-pressed="false">
+        Bandingkan
+      </button>
+
+      <div class="seg" id="viewport" role="group" aria-label="Lebar viewport">
+        <button class="seg-btn" type="button" data-vp="desktop" aria-pressed="true">Desktop</button>
+        <button class="seg-btn" type="button" data-vp="tablet" aria-pressed="false">Tablet</button>
+        <button class="seg-btn" type="button" data-vp="mobile" aria-pressed="false">Mobile</button>
+      </div>
+
+      <button class="btn" id="notes-toggle" type="button" aria-pressed="false" aria-controls="notes">
+        Catatan
+      </button>
+
+      <a class="btn" id="open-tab" href="#" target="_blank" rel="noopener">Buka di tab baru ↗</a>
+    </div>
+  </header>
+
+  <!-- Banner peringatan: selalu terlihat, tidak bisa ditutup. -->
+  <div class="banner" id="banner" role="note">
+    <strong>Placeholder:</strong> semua angka — rating, jumlah review, sisa stok, nomor batch,
+    dan tabel ukuran — masih contoh dan <strong>belum diverifikasi ke owner</strong>.
+  </div>
+
+  <!-- Petunjuk mode banding (muncul saat Compare aktif & belum 2 versi terpilih). -->
+  <div class="hint" id="compare-hint" hidden></div>
+
+  <div class="workspace">
+    <main class="stage" id="stage">
+      <!-- Tampilan satu versi -->
+      <div class="single-view" id="single-view">
+        <div class="frame-wrap">
+          <iframe class="frame" id="frame" title="Pratinjau versi desain"></iframe>
+        </div>
+      </div>
+
+      <!-- Tampilan banding (diisi oleh JS) -->
+      <div class="compare-view" id="compare-view" hidden></div>
+    </main>
+
+    <aside class="notes" id="notes" aria-label="Catatan versi" hidden></aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

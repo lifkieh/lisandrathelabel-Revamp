@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lisandra The Label — v2 (Uniqlo nav + custom grid)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fff; --sand:#efe9e0; --cocoa:#2e2320; --ink60:#6e6259;
+  --line:#e4ded6; --butter:#d9a93a; --sale:#9a3f2b;
+  --display:"Bodoni Moda",Georgia,serif;
+  --ui:"Inter",-apple-system,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#d8d2c9;font-family:var(--ui);color:var(--cocoa);font-size:15px;line-height:1.5}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--cocoa);outline-offset:2px}
+.doc{max-width:1320px;margin:0 auto;padding:26px clamp(14px,3vw,36px) 70px}
+.doc h1{font-family:var(--display);font-weight:400;font-size:clamp(26px,4.4vw,42px);margin:0 0 8px;letter-spacing:-.01em}
+.doc>p{margin:0 0 22px;max-width:66ch;color:#463b34}
+.frame{background:var(--paper);border:1px solid #c6bfb4}
+.tag{display:inline-block;background:var(--cocoa);color:#fff;font-size:10px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;margin-bottom:12px}
+
+/* ---------- UTILITY BAR (Uniqlo: baris tipis paling atas) ---------- */
+.util{display:flex;justify-content:flex-end;gap:20px;align-items:center;
+  padding:7px clamp(12px,2vw,26px);border-bottom:1px solid var(--line);
+  font-size:11px;color:var(--ink60)}
+.util a:hover{color:var(--cocoa);text-decoration:underline}
+.util select{font:inherit;font-size:11px;border:0;background:none;color:var(--ink60);cursor:pointer}
+
+/* ---------- MAIN HEADER ---------- */
+.hdr{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(14px,3vw,42px);
+  padding:14px clamp(12px,2vw,26px)}
+.wordmark{font-family:var(--display);font-size:24px;letter-spacing:.26em;text-transform:uppercase;white-space:nowrap}
+.searchbox{display:flex;align-items:center;gap:9px;max-width:440px;width:100%;
+  border:1px solid var(--line);padding:10px 14px;background:#faf8f5}
+.searchbox:focus-within{border-color:var(--cocoa);background:#fff}
+.searchbox input{border:0;background:none;font:inherit;font-size:14px;width:100%;outline:0}
+.searchbox svg{flex:none}
+.icons{display:flex;gap:6px;align-items:center}
+.ico{position:relative;display:grid;place-items:center;width:40px;height:40px}
+.ico:hover{background:#f4f0ea}
+.ico b{position:absolute;top:4px;right:2px;min-width:16px;height:16px;border-radius:8px;
+  background:var(--cocoa);color:#fff;font-size:10px;font-weight:500;display:grid;place-items:center;padding:0 4px}
+
+/* ---------- CATEGORY NAV + MEGA MENU (Uniqlo) ---------- */
+.catnav{position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.catnav>ul{display:flex;justify-content:center;flex-wrap:wrap;gap:0;list-style:none;margin:0;padding:0}
+.catnav>ul>li>a{display:block;padding:13px clamp(9px,1.4vw,18px);font-size:11.5px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid transparent}
+.catnav>ul>li:hover>a,.catnav>ul>li>a:focus-visible{border-bottom-color:var(--cocoa)}
+.catnav>ul>li>a.sale{color:var(--sale)}
+.mega{position:absolute;left:0;right:0;top:100%;z-index:20;background:#fff;
+  border-bottom:1px solid var(--line);box-shadow:0 12px 24px -18px rgba(46,35,32,.4);
+  padding:26px clamp(16px,4vw,54px) 32px;display:none;grid-template-columns:repeat(3,minmax(0,180px)) 1fr;
+  gap:clamp(18px,3vw,44px)}
+.has-mega:hover .mega,.has-mega:focus-within .mega{display:grid}
+.mega h4{margin:0 0 12px;font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink60)}
+.mega ul{list-style:none;margin:0;padding:0;font-size:13.5px}
+.mega li{margin-bottom:8px}
+.mega li a:hover{text-decoration:underline}
+.mega .promos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mega .promo figure{margin:0 0 8px;aspect-ratio:4/5;background:var(--sand)}
+.mega .promo span{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.mega .viewall{display:inline-block;margin-top:4px;font-size:11.5px;font-weight:500;
+  border-bottom:1px solid var(--cocoa);padding-bottom:1px}
+
+/* ---------- HERO (Uniqlo: banner + panel teks, bukan full screen) ---------- */
+.hero{display:grid;grid-template-columns:1.7fr 1fr;border-bottom:1px solid var(--line)}
+.hero figure{margin:0;height:clamp(300px,46vh,470px)}
+.hero-panel{padding:clamp(22px,3vw,44px);display:flex;flex-direction:column;justify-content:center;background:var(--sand)}
+.eyebrow{font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink60)}
+.hero-panel h2{font-family:var(--display);font-weight:400;font-size:clamp(28px,3.4vw,44px);
+  line-height:1;letter-spacing:-.02em;margin:10px 0 12px}
+.hero-panel p{margin:0 0 20px;color:#463b34;font-size:14.5px;max-width:34ch}
+.btn{display:inline-block;padding:13px 24px;background:var(--cocoa);color:#fff;border:1px solid var(--cocoa);
+  font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;transition:.18s}
+.btn:hover{background:#fff;color:var(--cocoa)}
+.btn--ghost{background:none;color:var(--cocoa)}
+.btn--ghost:hover{background:var(--cocoa);color:#fff}
+.btn--block{display:block;width:100%;text-align:center;padding:16px}
+
+/* ---------- PROMO TILES (Uniqlo: 3-up di bawah hero) ---------- */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+.tile{background:#fff;padding:0}
+.tile figure{margin:0;aspect-ratio:16/9;background:var(--sand)}
+.tile div{padding:14px 16px 20px}
+.tile b{display:block;font-size:13.5px;font-weight:500;margin-bottom:3px}
+.tile span{font-size:12.5px;color:var(--ink60)}
+
+/* ---------- SECTION + TABS ---------- */
+.sec{padding:clamp(30px,4vw,50px) clamp(14px,2vw,26px)}
+.sec-top{display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;justify-content:space-between;margin-bottom:16px}
+.sec-top h3{font-family:var(--display);font-weight:400;font-size:clamp(23px,3vw,34px);margin:0;letter-spacing:-.01em}
+.sec-top p{margin:4px 0 0;font-size:13.5px;color:var(--ink60)}
+.more{font-size:11px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;border-bottom:1px solid var(--cocoa);padding-bottom:2px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;padding-bottom:2px;overflow-x:auto}
+.tab{white-space:nowrap;padding:8px 15px;border:1px solid var(--line);font-size:12px}
+.tab[aria-pressed="true"]{background:var(--cocoa);color:#fff;border-color:var(--cocoa)}
+
+/* ---------- GRID + CARD (dari v1, dirapatkan ala Uniqlo) ---------- */
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,1.2vw,16px)}
+.card figure{position:relative;margin:0;aspect-ratio:3/4;background:var(--sand);overflow:hidden}
+.card figure img{position:absolute;inset:0;transition:opacity .35s}
+.card figure img+img{opacity:0}
+.card:hover figure img+img{opacity:1}
+.badge{position:absolute;top:0;left:0;z-index:2;padding:4px 8px;font-size:9.5px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;background:var(--cocoa);color:#fff}
+.badge--low{background:var(--butter);color:var(--cocoa)}
+.badge--out{background:#fff;border:1px solid var(--line);color:var(--cocoa)}
+.spec{margin:10px 0 5px;font-size:9.5px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--ink60)}
+.card h4{margin:0;font-size:13.5px;font-weight:400;line-height:1.35}
+.price{margin:3px 0 0;font-size:14px;font-weight:500;font-variant-numeric:tabular-nums}
+.price s{color:var(--ink60);font-weight:400;margin-right:6px}
+.price em{color:var(--sale);font-style:normal}
+.rate{margin:5px 0 0;font-size:11.5px;color:var(--ink60)}
+.rate b{color:var(--butter)}
+.sw-row{display:flex;gap:5px;margin-top:8px}
+.sw{width:12px;height:12px;border-radius:50%;border:1px solid var(--line)}
+.sw[aria-pressed="true"]{box-shadow:0 0 0 1px #fff inset,0 0 0 2px var(--cocoa)}
+.fit{margin:7px 0 0;font-size:11.5px;color:var(--ink60)}
+
+/* ---------- CRAFT BAND ---------- */
+.band{background:var(--sand);padding:clamp(34px,5vw,58px) clamp(14px,2vw,26px)}
+.band h3{font-family:var(--display);font-weight:400;font-size:clamp(23px,3vw,34px);margin:0 0 6px;letter-spacing:-.01em}
+.band>p{margin:0 0 26px;max-width:54ch;color:#463b34}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#d8cfc2}
+.num{background:var(--sand);padding:20px}
+.num b{display:block;font-family:var(--display);font-size:clamp(32px,4.4vw,50px);font-weight:400;line-height:1;margin-bottom:7px}
+.num span{font-size:13px;color:#463b34}
+
+/* ---------- SET ---------- */
+.set{display:grid;grid-template-columns:1fr 1fr auto;gap:clamp(12px,2vw,26px);align-items:center;
+  border:1px solid var(--line);padding:clamp(13px,2vw,20px)}
+.set figure{margin:0;aspect-ratio:4/5;background:var(--sand)}
+.set-copy{max-width:34ch}
+.set-copy h4{font-family:var(--display);font-weight:400;font-size:25px;margin:0 0 8px;letter-spacing:-.01em}
+.set-copy p{margin:0 0 12px;font-size:13.5px;color:var(--ink60)}
+.set-price{font-weight:500;margin-bottom:14px;font-variant-numeric:tabular-nums}
+.set-price s{color:var(--ink60);font-weight:400;margin-right:8px}
+
+/* ---------- FOOTER (Uniqlo: padat, banyak kolom) ---------- */
+.foot{background:var(--cocoa);color:#e9e2d9;padding:clamp(30px,4vw,48px) clamp(14px,2vw,26px) 22px}
+.foot-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,3vw,40px);margin-bottom:28px}
+.foot h5{margin:0 0 12px;font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#b9ac9e}
+.foot ul{list-style:none;margin:0;padding:0;font-size:13px}
+.foot li{margin-bottom:7px}
+.foot a:hover{text-decoration:underline}
+.foot-btm{border-top:1px solid #4a3c36;padding-top:16px;display:flex;flex-wrap:wrap;gap:12px;
+  justify-content:space-between;font-size:11.5px;color:#b9ac9e}
+.pays{display:flex;gap:6px;flex-wrap:wrap}
+.pay{border:1px solid #574840;padding:3px 7px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase}
+
+.note{margin:0;padding:11px 14px;background:#efe9e0;border-left:2px solid var(--butter);font-size:12.5px;color:#463b34}
+
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}.mega{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:860px){
+  .hdr{grid-template-columns:1fr auto;gap:10px}
+  .searchbox{grid-column:1/-1;order:3;max-width:none}
+  .catnav>ul{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto}
+  .hero{grid-template-columns:1fr}
+  .tiles{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .nums,.foot-cols{grid-template-columns:1fr 1fr}
+  .set{grid-template-columns:1fr 1fr}.set-copy{grid-column:1/-1;max-width:none}
+  .util a:nth-child(-n+2){display:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="doc">
+  <h1>v2 — navbar Uniqlo + grid custom</h1>
+  <p>Sistem navigasi mengikuti struktur Uniqlo: utility bar tipis, search sebagai input yang
+     terlihat (bukan ikon), baris kategori terpisah, dan mega menu multi-kolom. Grid, product card,
+     craft spec, dan palet mengikuti sistem v1. Foto asli Lisandra. Semua angka masih placeholder.</p>
+
+  <span class="tag">Homepage</span>
+  <div class="frame">
+
+    <!-- utility bar -->
+    <div class="util">
+      <a href="#">Stockists</a>
+      <a href="#">Help</a>
+      <a href="#">WhatsApp</a>
+      <select aria-label="Region"><option>Indonesia · IDR</option><option>International · USD</option></select>
+      <select aria-label="Language"><option>EN</option><option>ID</option></select>
+    </div>
+
+    <!-- main header -->
+    <header class="hdr">
+      <a class="wordmark" href="#">Lisandra</a>
+      <label class="searchbox">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+        </svg>
+        <input type="search" placeholder="Search dresses, sets, swim…" aria-label="Search">
+      </label>
+      <div class="icons">
+        <button class="ico" aria-label="Wishlist">♡</button>
+        <button class="ico" aria-label="Account">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c1.2-4 4-6 7.5-6s6.3 2 7.5 6"/>
+          </svg>
+        </button>
+        <button class="ico" aria-label="Cart, 2 items">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M5 7h14l-1.2 13H6.2L5 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/>
+          </svg>
+          <b>2</b>
+        </button>
+      </div>
+    </header>
+
+    <!-- category nav + mega menu -->
+    <nav class="catnav" aria-label="Categories">
+      <ul>
+        <li><a href="#">New in</a></li>
+        <li class="has-mega">
+          <a href="#" aria-expanded="false">Dresses</a>
+          <div class="mega">
+            <div>
+              <h4>By length</h4>
+              <ul>
+                <li><a href="#">Maxi dresses</a></li>
+                <li><a href="#">Midi dresses</a></li>
+                <li><a href="#">Mini dresses</a></li>
+              </ul>
+              <a class="viewall" href="#">View all dresses</a>
+            </div>
+            <div>
+              <h4>By technique</h4>
+              <ul>
+                <li><a href="#">Hand-knit</a></li>
+                <li><a href="#">Crochet</a></li>
+                <li><a href="#">Beaded detail</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>By colour</h4>
+              <ul>
+                <li><a href="#">Ivory &amp; cream</a></li>
+                <li><a href="#">Cocoa &amp; brown</a></li>
+                <li><a href="#">Butter yellow</a></li>
+                <li><a href="#">Black</a></li>
+              </ul>
+            </div>
+            <div class="promos">
+              <a class="promo" href="#">
+                <figure><img src="https://lisandrathelabel.com/cdn/shop/collections/Untitled_design-18.jpg?width=500" alt=""></figure>
+                <span>Cielo Tropico</span>
+              </a>
+              <a class="promo" href="#">
+                <figure><img src="https://lisandrathelabel.com/cdn/shop/files/Untitled_design-17.jpg?width=500" alt=""></figure>
+                <span>Evening knits</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li><a href="#">Sets</a></li>
+        <li><a href="#">Tops</a></li>
+        <li><a href="#">Bottoms</a></li>
+        <li><a href="#">Swim</a></li>
+        <li><a href="#">The Craft</a></li>
+        <li><a class="sale" href="#">Archive sale</a></li>
+      </ul>
+    </nav>
+
+    <!-- hero -->
+    <section class="hero">
+      <figure><img src="https://lisandrathelabel.com/cdn/shop/files/NEW_COLLECTION-3_9934ceb5-60f5-4a8d-b332-e375f525e03c.jpg?width=1600" alt="Cielo Tropico campaign"></figure>
+      <div class="hero-panel">
+        <p class="eyebrow">Cielo Tropico · New batch</p>
+        <h2>Hand-knit in Bali, two days at a time</h2>
+        <p>Twelve pieces per style, made by artisans we know by name. Then the style rests.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn" href="#">Shop the collection</a>
+          <a class="btn btn--ghost" href="#">See how it's made</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- promo tiles -->
+    <div class="tiles">
+      <a class="tile" href="#">
+        <figure><img src="https://lisandrathelabel.com/cdn/shop/collections/3_4d6c0bc3-b1a3-46f9-89ff-720e38cdd2c3.jpg?width=800" alt=""></figure>
+        <div><b>Sets, 10% off as a pair</b><span>Top and skirt from one dye lot</span></div>
+      </a>
+      <a class="tile" href="#">
+        <figure><img src="https://lisandrathelabel.com/cdn/shop/collections/5.jpg?width=800" alt=""></figure>
+        <div><b>Crochet swim</b><span>Mix your own top and bottom sizes</span></div>
+      </a>
+      <a class="tile" href="#">
+        <figure><img src="https://lisandrathelabel.com/cdn/shop/files/MEGAN_7.jpg?width=800" alt=""></figure>
+        <div><b>Not sure on size?</b><span>Send your measurements on WhatsApp</span></div>
+      </a>
+    </div>
+
+    <!-- grid + tabs -->
+    <section class="sec">
+      <div class="sec-top">
+        <div>
+          <h3>Best sellers</h3>
+          <p>Ranked by what actually leaves first.</p>
+        </div>
+        <a class="more" href="#">View all 31</a>
+      </div>
+
+      <div class="tabs" role="group" aria-label="Quick filter">
+        <button class="tab" aria-pressed="true">Best sellers</button>
+        <button class="tab" aria-pressed="false">New in</button>
+        <button class="tab" aria-pressed="false">Sets</button>
+        <button class="tab" aria-pressed="false">Under Rp 1jt</button>
+        <button class="tab" aria-pressed="false">In stock</button>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <figure>
+            <span class="badge badge--low">4 left of 12</span>
+            <img src="https://lisandrathelabel.com/cdn/shop/files/Untitled_design-17.jpg?width=700" alt="Zaye hand-knit maxi dress in cocoa">
+            <img src="https://lisandrathelabel.com/cdn/shop/files/MEGAN_8.jpg?width=700" alt="Zaye dress, open back detail">
+          </figure>
+          <p class="spec">Hand-knit · 2 days</p>
+          <h4>Zaye Hand-Knit Maxi Dress</h4>
+          <p class="price">Rp 1.999.000</p>
+          <p class="rate"><b>★★★★★</b> 4.8 (23)</p>
+          <div class="sw-row" role="group" aria-label="Colour">
+            <button class="sw" style="background:#4a352a" aria-pressed="true" aria-label="Cocoa"></button>
+            <button class="sw" style="background:#efe3d2" aria-pressed="false" aria-label="Ivory"></button>
+          </div>
+          <p class="fit">Model wears XS-S · 170 cm</p>
+        </article>
+
+        <article class="card">
+          <figure>
+            <img src="https://lisandrathelabel.com/cdn/shop/collections/3_4d6c0bc3-b1a3-46f9-89ff-720e38cdd2c3.jpg?width=700" alt="Amara hand-knit top in beige">
+            <img src="https://lisandrathelabel.com/cdn/shop/files/2_1044f32f-d221-4278-a46b-053597603c32.jpg?width=700" alt="Amara top, second view">
+          </figure>
+          <p class="spec">Hand-knit · Small batch</p>
+          <h4>Amara Hand-Knit Top</h4>
+          <p class="price">Rp 899.000</p>
+          <p class="rate"><b>★★★★★</b> 4.9 (31)</p>
+          <div class="sw-row" role="group" aria-label="Colour">
+            <button class="sw" style="background:#ddcbb2" aria-pressed="true" aria-label="Beige"></button>
+            <button class="sw" style="background:#211c1a" aria-pressed="false" aria-label="Black"></button>
+          </div>
+          <p class="fit">Model wears M-L · 168 cm</p>
+        </article>
+
+        <article class="card">
+          <figure>
+            <img src="https://lisandrathelabel.com/cdn/shop/collections/Untitled_design-18.jpg?width=700" alt="Mentari hand-knit long dress, butter yellow">
+            <img src="https://lisandrathelabel.com/cdn/shop/files/1_3b4c41c7-3a87-48c8-a258-5db23f395d1a.jpg?width=700" alt="Mentari dress, second view">
+          </figure>
+          <p class="spec">Hand-knit · 2 days</p>
+          <h4>Mentari Hand-Knit Long Dress</h4>
+          <p class="price">Rp 1.499.000</p>
+          <p class="rate"><b>★★★★☆</b> 4.6 (12)</p>
+          <div class="sw-row" role="group" aria-label="Colour">
+            <button class="sw" style="background:#e6c469" aria-pressed="true" aria-label="Butter yellow"></button>
+            <button class="sw" style="background:#f2ece1" aria-pressed="false" aria-label="Ivory"></button>
+          </div>
+          <p class="fit">Model wears XS-S · 172 cm</p>
+        </article>
+
+        <article class="card">
+          <figure>
+            <span class="badge">New</span>
+            <img src="https://lisandrathelabel.com/cdn/shop/files/1_e758ea44-ebb1-49e2-a498-63c71f459410.jpg?width=700" alt="Baia crochet top">
+            <img src="https://lisandrathelabel.com/cdn/shop/files/2_34953080-8e76-4225-b7d0-3a776f32c85e.jpg?width=700" alt="Baia crochet top, back">
+          </figure>
+          <p class="spec">Crochet · Batch of 12</p>
+          <h4>Baia Crochet Top</h4>
+          <p class="price">Rp 1.199.000</p>
+          <p class="rate"><b>★★★★★</b> 5.0 (8)</p>
+          <p class="fit">Model wears M-L · 165 cm</p>
+        </article>
+
+        <article class="card">
+          <figure>
+            <span class="badge badge--out">Sold out</span>
+            <img src="https://lisandrathelabel.com/cdn/shop/collections/5.jpg?width=700" alt="Kayu crochet bikini set">
+          </figure>
+          <p class="spec">Crochet · Made to order</p>
+          <h4>Kayu Crochet Bikini Set</h4>
+          <p class="price">Rp 1.349.000</p>
+          <p class="fit"><a href="#" style="border-bottom:1px solid currentColor">Notify me when it's back</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- craft band -->
+    <section class="band">
+      <h3>Twelve at a time</h3>
+      <p>Our knitters work from their homes in two villages outside Ubud, paid per piece.
+         A dress takes two days. That's why we make twelve at a time.</p>
+      <div class="nums">
+        <div class="num"><b>2</b><span>Days on the needles, one artisan, one dress</span></div>
+        <div class="num"><b>12</b><span>Pieces in a batch, then the style rests</span></div>
+        <div class="num"><b>9</b><span>Artisans in two villages, paid per piece</span></div>
+      </div>
+    </section>
+
+    <!-- set -->
+    <section class="sec">
+      <div class="sec-top">
+        <div>
+          <h3>Wear it as a set</h3>
+          <p>Top and skirt knit from one dye lot, so the colour matches exactly.</p>
+        </div>
+      </div>
+      <div class="set">
+        <figure><img src="https://lisandrathelabel.com/cdn/shop/collections/3_4d6c0bc3-b1a3-46f9-89ff-720e38cdd2c3.jpg?width=800" alt="Amara top"></figure>
+        <figure><img src="https://lisandrathelabel.com/cdn/shop/files/2_34953080-8e76-4225-b7d0-3a776f32c85e.jpg?width=800" alt="Amara wrap skirt"></figure>
+        <div class="set-copy">
+          <h4>The Amara Set</h4>
+          <p>Amara Hand-Knit Top and Amara Wrap Skirt, cut from the same dye lot. Buy the pair and save 10%.</p>
+          <p class="set-price"><s>Rp 1.898.000</s> Rp 1.708.000</p>
+          <a class="btn btn--block" href="#">Add the set</a>
+        </div>
+      </div>
+      <p class="note" style="margin-top:14px"><b>Catatan:</b> rating, jumlah review, sisa stok, dan
+        ketiga angka craft band masih placeholder — belum ada data aslinya.</p>
+    </section>
+
+    <!-- footer -->
+    <footer class="foot">
+      <div class="foot-cols">
+        <div>
+          <h5>Shop</h5>
+          <ul>
+            <li><a href="#">New in</a></li><li><a href="#">Dresses</a></li>
+            <li><a href="#">Sets</a></li><li><a href="#">Swim</a></li>
+            <li><a href="#">Archive sale</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Customer care</h5>
+          <ul>
+            <li><a href="#">Size guide</a></li><li><a href="#">Shipping &amp; duties</a></li>
+            <li><a href="#">Returns</a></li><li><a href="#">FAQs</a></li>
+            <li><a href="#">Care &amp; repair</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Lisandra world</h5>
+          <ul>
+            <li><a href="#">Our story</a></li><li><a href="#">The craft</a></li>
+            <li><a href="#">Stockists</a></li><li><a href="#">Journal</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>First look at the next batch</h5>
+          <p style="margin:0 0 12px;font-size:13px;color:#c8bcae">Twelve pieces per style, and the list hears first. 10% off your first order.</p>
+          <div style="display:flex;border:1px solid #574840">
+            <input type="email" placeholder="Email" aria-label="Email"
+                   style="flex:1;border:0;background:none;padding:11px 12px;color:#e9e2d9;font:inherit;font-size:13px;outline:0">
+            <button style="padding:0 16px;background:#e9e2d9;color:var(--cocoa);font-size:10.5px;font-weight:500;letter-spacing:.13em;text-transform:uppercase">Sign up</button>
+          </div>
+        </div>
+      </div>
+      <div class="foot-btm">
+        <span>© 2026 Lisandra The Label · Made in Bali</span>
+        <div class="pays">
+          <span class="pay">QRIS</span><span class="pay">VA</span><span class="pay">GoPay</span>
+          <span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">PayPal</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<script>
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.sw,.tab');
+  if(!b)return;
+  var g=b.closest('.sw-row,.tabs');
+  g.querySelectorAll('[aria-pressed]').forEach(function(x){
+    x.setAttribute('aria-pressed',x===b?'true':'false');
+  });
+});
+</script>
+</body>
+</html>
