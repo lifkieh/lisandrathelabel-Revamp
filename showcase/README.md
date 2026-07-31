@@ -83,6 +83,11 @@ http://localhost:8000/index.html?offline=1
 Tanpa `?offline=1`, showcase memakai file `versions/` (online). Skrip ini opsional —
 showcase tetap jalan tanpanya.
 
+> **Mode offline hanya tersedia lokal.** `assets/` dan `versions-offline/` di-`.gitignore`
+> (tidak ikut ter-commit) dan **tidak** ikut di-deploy ke Vercel. `?offline=1` hanya bekerja
+> di mesinmu setelah `fetch-assets.sh` dijalankan. Situs yang ter-deploy selalu memakai
+> gambar online dari CDN Lisandra.
+
 ## Deploy ke GitHub Pages
 
 Hanya folder `showcase/` yang di-deploy, dari branch `main`, lewat GitHub Actions.
@@ -97,7 +102,7 @@ tidak terindeks Google.
    on:
      push:
        branches: [main]
-       paths: ['lisandra-theme/showcase/**']
+       paths: ['showcase/**']
    permissions:
      contents: read
      pages: write
@@ -113,7 +118,7 @@ tidak terindeks Google.
          - uses: actions/configure-pages@v5
          - uses: actions/upload-pages-artifact@v3
            with:
-             path: lisandra-theme/showcase
+             path: showcase
          - id: deployment
            uses: actions/deploy-pages@v4
    ```
@@ -123,3 +128,13 @@ tidak terindeks Google.
 
 > Jalankan `fetch-assets.sh` sebelum deploy hanya kalau ingin gambar ikut ter-host dan
 > tidak bergantung ke CDN Lisandra. Tanpa itu, halaman tetap tampil selama CDN online.
+
+## Deploy ke Vercel
+
+`vercel.json` di root repo sudah mengarahkan Vercel ke folder `showcase/` **tanpa build step**
+dan memasang header `X-Robots-Tag: noindex`. Import repo di [vercel.com](https://vercel.com) →
+deploy; tidak perlu setting build/framework.
+
+`assets/` dan `versions-offline/` di-`.gitignore`, jadi situs Vercel selalu memakai gambar
+online dari CDN Lisandra. Mode `?offline=1` tidak tersedia di Vercel — hanya lokal (lihat
+[Aset offline](#aset-offline)).
