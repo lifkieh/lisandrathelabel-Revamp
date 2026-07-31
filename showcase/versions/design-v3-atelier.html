@@ -14,18 +14,11 @@
   --sans:"Jost",-apple-system,Helvetica,Arial,sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0;background:#d8d2c9;font-family:var(--sans);color:var(--ink);font-size:15px;line-height:1.6;font-weight:300}
+body{margin:0;background:var(--bg);font-family:var(--sans);color:var(--ink);font-size:15px;line-height:1.6;font-weight:300}
 img{display:block;width:100%;height:100%;object-fit:cover}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-
-.doc{max-width:1320px;margin:0 auto;padding:26px clamp(14px,3vw,36px) 70px}
-.doc h1{font-family:var(--serif);font-weight:400;font-size:clamp(26px,4.4vw,42px);margin:0 0 8px}
-.doc>p{margin:0 0 22px;max-width:68ch;color:#463b34;font-family:"Jost",sans-serif}
-.frame{background:var(--bg);border:1px solid #c6bfb4}
-.tag{display:inline-block;background:#2e2320;color:#fff;font-size:10px;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;margin-bottom:12px}
 
 /* ---------- header: logo tengah, nav minimal (ciri Atelier) ---------- */
 .ann{text-align:center;padding:9px 12px;font-size:11px;letter-spacing:.18em;
@@ -87,15 +80,6 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
   letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px}
 .foot small{color:var(--ink60);font-size:11.5px;letter-spacing:.1em}
 
-/* ---------- panel penilaian ---------- */
-.verdict{margin-top:26px;background:#fff;border:1px solid #c6bfb4;padding:clamp(18px,3vw,30px)}
-.verdict h2{font-family:"Jost",sans-serif;font-size:15px;font-weight:500;letter-spacing:.1em;
-  text-transform:uppercase;margin:0 0 16px}
-.verdict table{width:100%;border-collapse:collapse;font-size:14px}
-.verdict th,.verdict td{text-align:left;padding:9px 10px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
-.verdict th{font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink60)}
-.yes{color:#3f6b45}.no{color:#9a3f2b}
-
 @media(max-width:860px){
   .split,.split.rev{grid-template-columns:1fr}
   .split.rev figure{order:0}
@@ -107,18 +91,6 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 </style>
 </head>
 <body>
-<div class="doc">
-  <h1>v3 — Shopify <em>Atelier</em> (preset Horizon, gratis)</h1>
-  <p>Dari 10 preset Horizon (Horizon, Atelier, Fabric, Dwell, Heritage, Ritual, Savor, Tinker,
-     Vessel, Pitch), <strong>Atelier</strong> yang paling dekat dengan Lisandra: preset ini memang
-     diposisikan untuk brand handmade/artisan dengan layout editorial, galeri lapang, dan ruang
-     bercerita. Ini rendering bahasa desainnya dengan konten Lisandra — interpretasi dari arah
-     desain resminya, bukan salinan piksel demo. Perhatikan bedanya dengan v2: jauh lebih lapang,
-     jauh lebih sedikit informasi per layar.</p>
-
-  <span class="tag">Homepage — stock Atelier</span>
-  <div class="frame">
-
     <div class="ann">Free shipping across Indonesia · Worldwide free over USD 200</div>
 
     <header class="hdr">
@@ -220,32 +192,5 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
       </nav>
       <small>© 2026 Lisandra The Label · Powered by Shopify</small>
     </footer>
-  </div>
-
-  <!-- ---------- penilaian jujur ---------- -->
-  <div class="verdict">
-    <h2>Apa yang didapat dan apa yang hilang</h2>
-    <table>
-      <tr><th style="width:34%">Hal</th><th style="width:33%">Atelier apa adanya</th><th>Konsekuensi</th></tr>
-      <tr><td>Waktu setup</td><td class="yes">2–3 hari</td><td>Jauh lebih cepat dari v2</td></tr>
-      <tr><td>Biaya tema</td><td class="yes">Gratis</td><td>Sama seperti v2 — dua-duanya Horizon</td></tr>
-      <tr><td>Kesan brand</td><td class="yes">Kuat, editorial, mahal</td><td>Cocok untuk cerita artisan</td></tr>
-      <tr><td>Produk per layar</td><td class="no">3, dengan whitespace besar</td><td>Katalog 31 produk butuh scroll panjang; v2 menampilkan 5 per baris</td></tr>
-      <tr><td>Info di product card</td><td class="no">Judul + harga saja</td><td>Tanpa swatch, rating, sisa stok, "model wears" — semua sinyal yang mendorong klik</td></tr>
-      <tr><td>Craft spec strip</td><td class="no">Tidak ada</td><td>Elemen pembeda utama hilang; butuh blok custom (sudah ada di repo)</td></tr>
-      <tr><td>Shop the set</td><td class="no">Tidak ada</td><td>Pendorong AOV terbesar hilang; butuh blok custom + Shopify Bundles</td></tr>
-      <tr><td>Search</td><td class="no">Ikon, bukan input</td><td>Uniqlo menaruh input yang terlihat karena search-driven session konversinya jauh lebih tinggi</td></tr>
-      <tr><td>Mega menu</td><td class="no">Nav sederhana</td><td>6 kategori masih muat, tapi tidak ada jalur "by length/technique/colour"</td></tr>
-      <tr><td>Hero</td><td class="no">Full-screen</td><td>Produk pertama baru muncul setelah scroll penuh</td></tr>
-      <tr><td>Nama produk</td><td class="no">Warna ikut di judul</td><td>Masalah katalog, bukan masalah tema — tetap harus diperbaiki</td></tr>
-    </table>
-    <p style="margin:16px 0 0;font-size:13.5px;color:#5d554c">
-      Atelier bukan pilihan yang salah — ini titik start terbaik kalau prioritasnya kecepatan dan
-      kesan brand. Tapi apa adanya, dia menjual <em>suasana</em>, bukan produk. Alternatif terdekat:
-      <strong>Fabric</strong> (grid foto edge-to-edge, swatch besar, mega menu bawaan — lebih dekat
-      ke disiplin Uniqlo/H&amp;M) dan <strong>Ritual</strong> (nuansa majalah fashion mewah).
-    </p>
-  </div>
-</div>
 </body>
 </html>

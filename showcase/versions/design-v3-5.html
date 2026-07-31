@@ -15,17 +15,11 @@
   --ui:"Inter",-apple-system,Helvetica,Arial,sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0;background:#d8d2c9;font-family:var(--ui);color:var(--cocoa);font-size:15px;line-height:1.5}
+body{margin:0;background:var(--paper);font-family:var(--ui);color:var(--cocoa);font-size:15px;line-height:1.5}
 img{display:block;width:100%;height:100%;object-fit:cover}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 :focus-visible{outline:2px solid var(--cocoa);outline-offset:2px}
-.doc{max-width:1340px;margin:0 auto;padding:26px clamp(14px,3vw,36px) 70px}
-.doc h1{font-family:var(--display);font-weight:400;font-size:clamp(26px,4.4vw,42px);margin:0 0 8px;letter-spacing:-.01em}
-.doc>p{margin:0 0 22px;max-width:70ch;color:#463b34}
-.frame{background:var(--paper);border:1px solid #c6bfb4}
-.tag{display:inline-block;background:var(--cocoa);color:#fff;font-size:10px;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;margin:26px 0 12px}
 .lbl{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
 .spec{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink60)}
 
@@ -213,9 +207,6 @@ details th{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:up
   justify-content:space-between;font-size:11.5px;color:#b9ac9e}
 .foot .pay{border-color:#574840}
 
-.note{margin:14px 0 0;padding:12px 14px;background:var(--sand);border-left:2px solid var(--butter);
-  font-size:12.5px;color:#463b34}
-
 @media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}.mega{grid-template-columns:repeat(2,1fr)}
   .ugc{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:860px){
@@ -237,16 +228,6 @@ details th{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:up
 </style>
 </head>
 <body>
-<div class="doc">
-  <h1>v3.5 — permak penuh</h1>
-  <p>Versi tanpa kompromi. Disiplin ritel Uniqlo/H&amp;M (nav dengan search, mega menu, grid 5 kolom,
-     PDP kolom sticky) di atas sistem tipografi Bodoni Moda + Inter. Elemen penanda:
-     <strong>batch ledger</strong> — data batch yang berjalan di bawah hero dan sel teks di dalam
-     grid produk. Keduanya memakai fakta produksi asli, dan itu satu-satunya hal di halaman ini
-     yang tidak bisa ditiru Uniqlo maupun H&amp;M.</p>
-
-  <span class="tag" style="margin-top:0">Homepage</span>
-  <div class="frame">
 
     <div class="util">
       <span>Free shipping across Indonesia · Worldwide free over USD 200</span>
@@ -489,11 +470,7 @@ details th{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:up
         </div>
       </div>
     </footer>
-  </div>
 
-  <!-- ============ PDP ============ -->
-  <span class="tag">Product</span>
-  <div class="frame">
     <p class="crumbs">Home / Dresses / Zaye Hand-Knit Maxi Dress</p>
     <div class="pdp">
       <div class="gal">
@@ -578,15 +555,6 @@ details th{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:up
       </div>
       <a class="btn" href="#">Add to cart</a>
     </div>
-    <p class="note" style="margin:0 14px 14px"><b>Sticky bar</b> di atas hanya muncul di mobile,
-      setelah tombol add-to-cart utama tergulung ke luar layar. Di sini ditampilkan agar terlihat.</p>
-  </div>
-
-  <p class="note">Semua angka — rating, jumlah review, sisa stok, nomor batch, tabel ukuran, dan
-    ketiga angka craft band — masih placeholder. Batch ledger baru boleh tayang kalau angka stok
-    per batch memang dilacak; kalau tidak, elemen itu jadi klaim palsu dan lebih baik diganti
-    dengan versi tanpa angka sisa.</p>
-</div>
 
 <script>
 document.addEventListener('click',function(e){

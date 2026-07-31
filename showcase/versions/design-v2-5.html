@@ -15,20 +15,11 @@
   --sans:"Jost",-apple-system,Helvetica,Arial,sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0;background:#d8d2c9;font-family:var(--sans);color:var(--ink);font-size:15px;line-height:1.6;font-weight:300}
+body{margin:0;background:var(--bg);font-family:var(--sans);color:var(--ink);font-size:15px;line-height:1.6;font-weight:300}
 img{display:block;width:100%;height:100%;object-fit:cover}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.doc{max-width:1320px;margin:0 auto;padding:26px clamp(14px,3vw,36px) 70px}
-.doc h1{font-family:var(--serif);font-weight:400;font-size:clamp(26px,4.4vw,42px);margin:0 0 8px}
-.doc>p{margin:0 0 22px;max-width:68ch;color:#463b34}
-.frame{background:var(--bg);border:1px solid #c6bfb4}
-.tag{display:inline-block;background:#2e2320;color:#fff;font-size:10px;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;margin-bottom:12px}
-.new{position:relative}
-.new::after{content:"BARU";position:absolute;top:6px;right:6px;z-index:30;background:var(--butter);
-  color:#2e2320;font-size:9px;font-weight:500;letter-spacing:.12em;padding:3px 6px}
 
 /* header: struktur Atelier (logo tengah) + search terlihat */
 .util{display:flex;justify-content:space-between;align-items:center;gap:16px;
@@ -134,12 +125,6 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
   text-transform:uppercase;color:var(--ink60)}
 .foot small{color:var(--ink60);font-size:11.5px;letter-spacing:.1em}
 
-.verdict{margin-top:24px;background:#fff;border:1px solid #c6bfb4;padding:clamp(18px,3vw,28px)}
-.verdict h2{font-size:14px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin:0 0 14px}
-.verdict table{width:100%;border-collapse:collapse;font-size:14px}
-.verdict th,.verdict td{text-align:left;padding:9px 10px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
-.verdict th{font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink60)}
-
 @media(max-width:1000px){.grid{grid-template-columns:1fr 1fr}}
 @media(max-width:860px){
   .hdr{grid-template-columns:1fr auto;gap:12px}
@@ -153,17 +138,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 </style>
 </head>
 <body>
-<div class="doc">
-  <h1>v2.5 — Atelier, dibetulkan seperlunya</h1>
-  <p>Basis tetap preset <strong>Atelier</strong>: warna hangat, Cormorant + Jost, logo tengah,
-     editorial split. Yang ditambahkan hanya komponen yang punya dampak langsung ke penjualan.
-     Elemen bertanda <span style="background:#c8993a;color:#2e2320;font-size:10px;padding:2px 6px;letter-spacing:.1em">BARU</span>
-     adalah yang tidak ada di v3 stock. Perkiraan kerja: <strong>±1 minggu</strong>.</p>
-
-  <span class="tag">Homepage</span>
-  <div class="frame">
-
-    <div class="util new">
+    <div class="util">
       <span>Free shipping across Indonesia</span>
       <div class="r">
         <a href="#">Stockists</a><a href="#">WhatsApp</a>
@@ -173,7 +148,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
     </div>
 
     <header class="hdr">
-      <label class="searchbox new">
+      <label class="searchbox">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
         </svg>
@@ -183,7 +158,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
       <div class="icons"><a href="#">Wishlist</a><a href="#">Account</a><a href="#">Cart (0)</a></div>
     </header>
 
-    <nav class="catnav new" aria-label="Categories">
+    <nav class="catnav" aria-label="Categories">
       <ul>
         <li><a href="#">New in</a></li><li><a href="#">Dresses</a></li><li><a href="#">Sets</a></li>
         <li><a href="#">Tops</a></li><li><a href="#">Bottoms</a></li><li><a href="#">Swim</a></li>
@@ -191,7 +166,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
       </ul>
     </nav>
 
-    <section class="hero new">
+    <section class="hero">
       <img src="https://lisandrathelabel.com/cdn/shop/files/NEW_COLLECTION-3_9934ceb5-60f5-4a8d-b332-e375f525e03c.jpg?width=1800" alt="Cielo Tropico campaign">
       <div class="hero-in">
         <span>Cielo Tropico · New batch</span>
@@ -218,10 +193,10 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
             <img src="https://lisandrathelabel.com/cdn/shop/files/Untitled_design-17.jpg?width=700" alt="Zaye hand-knit maxi dress in cocoa">
             <img src="https://lisandrathelabel.com/cdn/shop/files/MEGAN_8.jpg?width=700" alt="Zaye dress, open back">
           </figure>
-          <p class="spec new">Hand-knit · 2 days</p>
+          <p class="spec">Hand-knit · 2 days</p>
           <h4>Zaye Hand-Knit Maxi Dress</h4>
           <p class="price">Rp 1.999.000</p>
-          <div class="sw-row new" role="group" aria-label="Colour">
+          <div class="sw-row" role="group" aria-label="Colour">
             <button class="sw" style="background:#4a352a" aria-pressed="true" aria-label="Cocoa"></button>
             <button class="sw" style="background:#efe3d2" aria-pressed="false" aria-label="Ivory"></button>
           </div>
@@ -266,7 +241,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
           <p class="spec">Crochet · Made to order</p>
           <h4>Kayu Crochet Bikini Set</h4>
           <p class="price">Rp 1.349.000</p>
-          <p class="fit new"><a href="#" style="border-bottom:1px solid currentColor">Notify me when it's back</a></p>
+          <p class="fit"><a href="#" style="border-bottom:1px solid currentColor">Notify me when it's back</a></p>
         </article>
       </div>
     </section>
@@ -281,7 +256,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
       </div>
     </section>
 
-    <section class="sec new">
+    <section class="sec">
       <div class="sec-top">
         <div>
           <h3>Wear it as a set</h3>
@@ -300,7 +275,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
       </div>
     </section>
 
-    <div class="trust new">
+    <div class="trust">
       <div><b>Free shipping</b><span>Across Indonesia, always</span></div>
       <div><b>14-day returns</b><span>On unworn pieces</span></div>
       <div><b>Sizing help</b><span>Ask on WhatsApp first</span></div>
@@ -321,33 +296,12 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
         <a href="#">Our story</a><a href="#">The craft</a><a href="#">Stockists</a>
         <a href="#">Size guide</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">FAQs</a>
       </nav>
-      <div class="pays new">
+      <div class="pays">
         <span class="pay">QRIS</span><span class="pay">VA</span><span class="pay">GoPay</span>
         <span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">PayPal</span>
       </div>
       <small>© 2026 Lisandra The Label · Made in Bali</small>
     </footer>
-  </div>
-
-  <div class="verdict">
-    <h2>Apa yang berubah dari v3</h2>
-    <table>
-      <tr><th style="width:30%">Tambahan</th><th style="width:34%">Kenapa ini yang dipilih</th><th>Cara bangun</th></tr>
-      <tr><td>Search sebagai input</td><td>Sesi dengan search punya konversi paling tinggi; ikon menyembunyikannya</td><td>Setting header + CSS</td></tr>
-      <tr><td>Baris kategori + utility bar</td><td>6 kategori butuh pintu masuk permanen, bukan di balik hamburger</td><td>Setting menu + CSS</td></tr>
-      <tr><td>Hero 62vh</td><td>Produk masuk layar tanpa scroll penuh</td><td>Setting section</td></tr>
-      <tr><td>Grid 4 kolom</td><td>Katalog 31 produk terlalu lama di-scroll pada grid 3 kolom lapang</td><td>Setting section</td></tr>
-      <tr><td>Swatch, craft spec, "model wears", badge stok</td><td>Empat sinyal yang mendorong klik dan menekan keraguan ukuran</td><td>Metafield + <code>blocks/craft-spec.liquid</code></td></tr>
-      <tr><td>Shop the set</td><td>Pendorong AOV terbesar yang sudah tersedia di katalog</td><td><code>blocks/shop-the-set.liquid</code> + Shopify Bundles</td></tr>
-      <tr><td>Notify me</td><td>Produk handmade sering habis; demand-nya sekarang hilang begitu saja</td><td>App back-in-stock</td></tr>
-      <tr><td>Trust row + ikon pembayaran</td><td>Rp 1–2 juta butuh jawaban ongkir/retur/pembayaran sebelum ditanya</td><td>Setting section</td></tr>
-    </table>
-    <p style="margin:14px 0 0;font-size:13.5px;color:#5d554c">
-      Yang <strong>tidak</strong> dilakukan di sini: mega menu, PDP dirombak, breadcrumb, sticky ATC
-      mobile, tile editorial di dalam grid, ganti tipografi. Semua itu ada di v3.5.
-    </p>
-  </div>
-</div>
 <script>
 document.addEventListener('click',function(e){
   var b=e.target.closest('.sw');if(!b)return;

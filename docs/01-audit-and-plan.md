@@ -726,3 +726,25 @@ Urutan ini saja sudah memberi porsi terbesar dari hasil: **§6.1 (warna jadi var
 6. Angka di dua file gambar size guide.
 7. Apakah `/collections/cielo-tropico-collection` masih hidup.
 8. Data analytics (conversion rate, AOV, LCP) — semua target di dokumen ini perlu dikalibrasi ulang setelah baseline masuk.
+
+---
+
+## Rincian komponen v2.5
+
+Disalin dari panel "Apa yang berubah dari v3" pada mockup v2.5
+(`showcase/versions/design-v2-5.html`) sebelum anotasi mockup dibuang. Kolom
+"Cara bangun" belum tercatat di tempat lain.
+
+| Tambahan | Kenapa ini yang dipilih | Cara bangun |
+|---|---|---|
+| Search sebagai input | Sesi dengan search punya konversi paling tinggi; ikon menyembunyikannya | Setting header + CSS |
+| Baris kategori + utility bar | 6 kategori butuh pintu masuk permanen, bukan di balik hamburger | Setting menu + CSS |
+| Hero 62vh | Produk masuk layar tanpa scroll penuh | Setting section |
+| Grid 4 kolom | Katalog 31 produk terlalu lama di-scroll pada grid 3 kolom lapang | Setting section |
+| Swatch, craft spec, "model wears", badge stok | Empat sinyal yang mendorong klik dan menekan keraguan ukuran | Metafield + `blocks/craft-spec.liquid` |
+| Shop the set | Pendorong AOV terbesar yang sudah tersedia di katalog | `blocks/shop-the-set.liquid` + Shopify Bundles |
+| Notify me | Produk handmade sering habis; demand-nya sekarang hilang begitu saja | App back-in-stock |
+| Trust row + ikon pembayaran | Rp 1–2 juta butuh jawaban ongkir/retur/pembayaran sebelum ditanya | Setting section |
+
+> Yang **tidak** dilakukan di v2.5: mega menu, PDP dirombak, breadcrumb, sticky ATC
+> mobile, tile editorial di dalam grid, ganti tipografi. Semua itu ada di v3.5.
