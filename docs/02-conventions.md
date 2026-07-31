@@ -61,6 +61,16 @@ Setiap kali file bawaan Horizon terpaksa diubah, tambahkan baris di sini.
 |---|---|---|---|---|
 | `layout/theme.liquid` | tambah `<link>` ke brand-type.css & brand.css + preload 2 woff2 | tidak ada cara lain memuat CSS custom global | _belum_ | — |
 
+## Temuan dari showcase
+
+Catatan untuk **implementasi tema asli**, bukan untuk diperbaiki di mockup.
+
+- **Breakpoint mobile mockup ada di `max-width: 860px`.** Akibatnya iPad portrait (820px)
+  ikut mendapat grid **2 kolom** — sama seperti HP. Saat tema asli dibangun, perlu
+  **breakpoint menengah** (mis. tablet) supaya tablet mendapat **3–4 kolom**, tidak jatuh
+  ke layout HP. Di showcase, preset Tablet sengaja diset **1024px** (bukan 820px) agar
+  tombol Desktop/Tablet/Mobile benar-benar menghasilkan tiga layout berbeda.
+
 ## Aksesibilitas — floor yang tidak boleh turun
 
 - Kontras teks minimal 4.5:1 (`--ls-ink60` di atas putih lolos; jangan dipakai di atas `--ls-sand` untuk teks kecil)
