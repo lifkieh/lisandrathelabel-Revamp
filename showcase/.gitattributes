@@ -1,0 +1,2 @@
+# Skrip shell harus LF walau di Windows, supaya jalan di Linux (CI/deploy)
+*.sh text eol=lf
