@@ -36,6 +36,31 @@
       }
     },
     {
+      "id": "v2-1",
+      "file": "design-v2-1.html",
+      "label": "v2.1",
+      "sublabel": "Gen Z — v2 dinaikkan tempo",
+      "notes": {
+        "summary": "Arah Gen Z dari v2. Bricolage Grotesque + Inter, palet dua warna (ink + sun yellow), sudut membulat, nol gradasi. Sticker miring sebagai elemen penanda, rail klip vertikal shoppable, bento grid ukuran campur, nav chip yang di-scroll menggantikan mega menu. Section \"In the making\" berisi video proses + tiga kartu penghalang beli. Substansi kerajinan dipertahankan, temponya yang dinaikkan.",
+        "added": [
+          "Marquee kuning",
+          "nav chip",
+          "rail klip 9:16 dengan tag harga",
+          "bento grid",
+          "sticker fakta produksi",
+          "band kerajinan hitam",
+          "section In the making",
+          "footer membulat"
+        ],
+        "effort": "3–4 minggu, setara v2.",
+        "risks": [
+          "Butuh aset yang belum tentu ada — video vertikal untuk dua rail, dan video proses artisan. Tanpa itu dua section terkuatnya kosong.",
+          "Isi tiga kartu penghalang beli masih template dan harus dikonfirmasi ke owner, terutama SLA kirim, kebijakan retur, dan tawaran perbaikan gratis.",
+          "Palet dan tipografi berbeda dari sistem v1/v3.5, jadi kalau arah ini dipilih, assets/brand-type.css dan assets/brand.css di repo harus disesuaikan."
+        ]
+      }
+    },
+    {
       "id": "v2-5",
       "file": "design-v2-5.html",
       "label": "v2.5",

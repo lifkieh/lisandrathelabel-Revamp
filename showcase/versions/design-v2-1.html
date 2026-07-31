@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lisandra The Label — v2.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,600;12..96,75..100,800&family=Bodoni+Moda:ital@1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fffdf8;
+  --ink:#1c1815;
+  --ink60:#6f665c;
+  --line:#e7dfd1;
+  --sun:#f5c044;      /* aksen utama, diambil dari Butter Yellow di katalog */
+  --sand:#ede6da;
+  --sale:#c4442c;
+  --disp:"Bricolage Grotesque",-apple-system,Helvetica,sans-serif;
+  --ui:"Inter",-apple-system,Helvetica,Arial,sans-serif;
+  --it:"Bodoni Moda",Georgia,serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--ui);font-size:15px;line-height:1.5}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.lbl{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+
+/* ---------- marquee announcement ---------- */
+.marq{background:var(--sun);color:var(--ink);overflow:hidden;padding:9px 0;border-bottom:2px solid var(--ink)}
+.marq-t{display:flex;width:max-content;white-space:nowrap;animation:roll 30s linear infinite}
+.marq-t span{padding:0 22px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--line)}
+.hdr-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;padding:13px clamp(12px,2.5vw,26px)}
+.mark{font-family:var(--disp);font-weight:800;font-size:clamp(19px,2.4vw,25px);letter-spacing:-.02em;
+  text-transform:lowercase;text-align:center;white-space:nowrap}
+.search{display:flex;align-items:center;gap:8px;max-width:300px;width:100%;background:var(--sand);
+  padding:9px 14px;border-radius:999px}
+.search input{border:0;background:none;font:inherit;font-size:13.5px;width:100%;outline:0}
+.hdr-r{display:flex;gap:4px;justify-content:flex-end;align-items:center}
+.ico{position:relative;width:38px;height:38px;display:grid;place-items:center;border-radius:999px}
+.ico:hover{background:var(--sand)}
+.ico b{position:absolute;top:2px;right:0;min-width:17px;height:17px;border-radius:999px;background:var(--ink);
+  color:var(--sun);font-size:10px;font-weight:600;display:grid;place-items:center}
+/* nav sebagai chip yang bisa di-scroll — pola native mobile, bukan mega menu */
+.chips{display:flex;gap:7px;padding:0 clamp(12px,2.5vw,26px) 12px;overflow-x:auto;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;padding:8px 15px;border:1.5px solid var(--ink);border-radius:999px;
+  font-size:12.5px;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.chip--sale{border-color:var(--sale);color:var(--sale)}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(16px,3vw,40px);
+  align-items:center;padding:clamp(24px,4vw,56px) clamp(12px,2.5vw,26px)}
+.kick{font-family:var(--it);font-style:italic;font-size:clamp(17px,1.7vw,22px);color:var(--ink60)}
+.hero h1{font-family:var(--disp);font-weight:800;font-size:clamp(46px,8.4vw,104px);line-height:.86;
+  letter-spacing:-.045em;margin:10px 0 18px}
+.hero h1 .out{-webkit-text-stroke:2px var(--ink);color:transparent}
+.hero p{margin:0 0 24px;font-size:16.5px;max-width:34ch;color:#4a4139}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-block;padding:15px 28px;border-radius:999px;background:var(--ink);color:var(--paper);
+  font-size:13px;font-weight:600;letter-spacing:.02em;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn--sun{background:var(--sun);color:var(--ink)}
+.btn--out{background:none;color:var(--ink);border:1.5px solid var(--ink)}
+.btn--block{display:block;width:100%;text-align:center}
+.hero-media{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden}
+
+/* ---------- sticker: elemen penanda ---------- */
+.stk{position:absolute;z-index:3;background:var(--sun);color:var(--ink);padding:8px 13px;border-radius:8px;
+  font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--ink);
+  box-shadow:2px 2px 0 var(--ink);transform:rotate(-6deg)}
+.stk--ink{background:var(--ink);color:var(--paper);border-color:var(--ink);box-shadow:2px 2px 0 var(--sun)}
+.stk--paper{background:var(--paper)}
+.stk--r{transform:rotate(5deg)}
+
+/* ---------- clip rail ---------- */
+.sec{padding:clamp(30px,4.5vw,60px) clamp(12px,2.5vw,26px)}
+.sec-top{display:flex;flex-wrap:wrap;gap:12px;align-items:end;justify-content:space-between;margin-bottom:20px}
+.sec-top h2{font-family:var(--disp);font-weight:800;font-size:clamp(28px,4.4vw,52px);line-height:.94;
+  letter-spacing:-.035em;margin:0}
+.sec-top p{margin:6px 0 0;font-size:14px;color:var(--ink60)}
+.more{font-size:13px;font-weight:600;border-bottom:2px solid var(--sun);padding-bottom:2px}
+.more-row{display:flex;gap:18px;flex-wrap:wrap;align-items:baseline}
+/* link keluar toko sengaja dibuat lebih tenang dari link internal */
+.more--out{border-bottom-color:var(--line);color:var(--ink60)}
+.more--out:hover{border-bottom-color:var(--ink);color:var(--ink)}
+.rail{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.clip{position:relative;flex:0 0 clamp(200px,22vw,262px);aspect-ratio:9/16;border-radius:18px;
+  overflow:hidden;scroll-snap-align:start;background:var(--sand)}
+.clip img{transition:transform .5s}
+.clip:hover img{transform:scale(1.05)}
+.clip-tag{position:absolute;inset:auto 10px 10px 10px;background:var(--paper);border-radius:12px;
+  padding:9px 11px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.clip-tag b{font-size:12.5px;font-weight:600}
+.clip-tag--wide{justify-content:flex-start}
+.clip-tag span{font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.clip-play{position:absolute;top:10px;left:10px;background:var(--ink);color:var(--paper);border-radius:999px;
+  padding:5px 11px;font-size:11px;font-weight:600}
+
+/* ---------- bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto);gap:12px}
+.bt{border-radius:20px;overflow:hidden;position:relative}
+.bt--wide{grid-column:span 2;grid-row:span 2}
+.bt--tall{grid-row:span 2}
+.bt-cap{position:absolute;inset:auto 8px 8px 8px;padding:12px 14px;border-radius:13px;
+  background:var(--paper);color:var(--ink)}
+.bt-cap b{display:block;font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:-.02em}
+.bt-cap span{font-size:12.5px;color:var(--ink60)}
+.bt--stat{background:var(--ink);color:var(--paper);padding:20px;display:flex;flex-direction:column;justify-content:space-between}
+.bt--stat b{font-family:var(--disp);font-weight:800;font-size:clamp(40px,4.6vw,62px);line-height:.9;letter-spacing:-.04em}
+.bt--stat span{font-size:13px;opacity:.92}
+.bt--sun{background:var(--sun);color:var(--ink);padding:20px;display:flex;flex-direction:column;justify-content:space-between}
+.bt--sun b{font-family:var(--disp);font-weight:800;font-size:clamp(26px,2.8vw,34px);line-height:.98;letter-spacing:-.03em}
+
+/* ---------- product grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.6vw,20px)}
+.card figure{position:relative;margin:0;aspect-ratio:3/4;border-radius:16px;overflow:hidden;background:var(--sand)}
+.card figure img{position:absolute;inset:0;transition:opacity .35s}
+.card figure img+img{opacity:0}
+.card:hover figure img+img{opacity:1}
+.card h3{margin:12px 0 2px;font-family:var(--disp);font-weight:600;font-size:16px;letter-spacing:-.02em;line-height:1.2}
+.price{margin:0;font-size:14.5px;font-weight:500;font-variant-numeric:tabular-nums}
+.price s{color:var(--ink60);font-weight:400;margin-right:6px}
+.meta{margin:7px 0 0;font-size:12px;color:var(--ink60)}
+.sw-row{display:flex;gap:6px;margin-top:9px}
+.sw{width:15px;height:15px;border-radius:999px;border:1.5px solid var(--line)}
+.sw[aria-pressed="true"]{box-shadow:0 0 0 2px var(--paper) inset,0 0 0 2px var(--ink)}
+
+/* ---------- craft band ---------- */
+.band{background:var(--ink);color:var(--paper);padding:clamp(38px,5.5vw,70px) clamp(12px,2.5vw,26px);
+  border-radius:26px;margin:0 clamp(12px,2.5vw,26px)}
+.band h2{font-family:var(--disp);font-weight:800;font-size:clamp(32px,5.4vw,66px);line-height:.9;
+  letter-spacing:-.04em;margin:0 0 12px;max-width:16ch}
+.band h2 em{font-family:var(--it);font-style:italic;font-weight:400;color:var(--sun)}
+.band>p{margin:0 0 32px;max-width:48ch;opacity:.9;font-size:16px}
+.bnums{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bnum{border:1px solid rgba(255,253,248,.28);border-radius:16px;padding:20px}
+.bnum b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(36px,4.6vw,58px);
+  line-height:.9;letter-spacing:-.04em;margin-bottom:8px;color:var(--sun)}
+.bnum span{font-size:13.5px;opacity:.92}
+
+/* ---------- set ---------- */
+.set{display:grid;grid-template-columns:1fr 1fr 1.05fr;gap:clamp(12px,2vw,24px);align-items:center;
+  background:var(--sand);border-radius:22px;padding:clamp(14px,2vw,22px)}
+.set figure{margin:0;aspect-ratio:4/5;border-radius:14px;overflow:hidden}
+.set h3{font-family:var(--disp);font-weight:800;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;margin:0 0 8px}
+.set p{margin:0 0 14px;font-size:14px;color:#4a4139}
+.set-price{font-weight:600;margin-bottom:16px;font-variant-numeric:tabular-nums;font-size:16px}
+.set-price s{color:var(--ink60);font-weight:400;margin-right:8px}
+
+/* ---------- kartu penghalang beli ---------- */
+.qcards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.qcard{background:var(--sand);border-radius:18px;padding:22px;display:flex;flex-direction:column}
+.qcard h3{font-family:var(--disp);font-weight:800;font-size:22px;line-height:1.1;
+  letter-spacing:-.03em;margin:0 0 10px}
+.qcard p{margin:0 0 16px;font-size:14px;color:#4a4139;flex:1}
+.qcard .tmpl{color:var(--ink60);font-style:italic}
+.qcard a{align-self:flex-start;font-size:13px;font-weight:600;
+  border-bottom:2px solid var(--sun);padding-bottom:2px}
+.qcard a:hover{border-bottom-color:var(--ink)}
+
+/* ---------- footer ---------- */
+.foot{background:var(--ink);color:var(--paper);border-radius:26px 26px 0 0;
+  padding:clamp(30px,4vw,52px) clamp(14px,2.5vw,30px) 24px;margin-top:clamp(30px,4vw,56px)}
+.foot-top{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:end;margin-bottom:30px}
+.foot-top h2{font-family:var(--disp);font-weight:800;font-size:clamp(30px,5vw,58px);letter-spacing:-.04em;
+  line-height:.94;margin:0;max-width:16ch}
+.nl{display:flex;background:rgba(255,253,248,.1);border-radius:999px;padding:5px 5px 5px 18px;min-width:280px}
+.nl input{flex:1;border:0;background:none;color:var(--paper);font:inherit;font-size:14px;outline:0}
+.nl button{background:var(--sun);color:var(--ink);border-radius:999px;padding:11px 20px;font-size:13px;font-weight:600}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:13.5px;margin-bottom:24px;opacity:.86}
+.foot-btm{border-top:1px solid rgba(255,253,248,.16);padding-top:16px;display:flex;flex-wrap:wrap;gap:10px;
+  justify-content:space-between;font-size:12px;opacity:.7}
+.pays{display:flex;gap:6px;flex-wrap:wrap}
+.pay{border:1px solid rgba(255,253,248,.3);border-radius:6px;padding:3px 8px;font-size:10px;
+  letter-spacing:.06em;text-transform:uppercase}
+
+@media(max-width:1000px){
+  .grid{grid-template-columns:1fr 1fr}
+  .bento{grid-template-columns:1fr 1fr}
+  .qcards{grid-template-columns:1fr}
+}
+@media(max-width:860px){
+  .hdr-in{grid-template-columns:1fr auto}
+  .search{grid-column:1/-1;order:3;max-width:none}
+  .hero{grid-template-columns:1fr}
+  .bnums{grid-template-columns:1fr}
+  .set{grid-template-columns:1fr 1fr}
+  .set-copy{grid-column:1/-1}
+  .band{border-radius:20px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important}
+  .marq-t{animation:none;width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="marq" aria-label="Announcements">
+  <div class="marq-t">
+    <span>12 made per style</span><span>·</span><span>Free shipping across Indonesia</span><span>·</span>
+    <span>Knit by hand in Ubud</span><span>·</span><span>New drop live now</span><span>·</span>
+    <span aria-hidden="true">12 made per style</span><span aria-hidden="true">·</span>
+    <span aria-hidden="true">Free shipping across Indonesia</span><span aria-hidden="true">·</span>
+    <span aria-hidden="true">Knit by hand in Ubud</span><span aria-hidden="true">·</span>
+    <span aria-hidden="true">New drop live now</span><span aria-hidden="true">·</span>
+  </div>
+</div>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <label class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" placeholder="Cari dress, set, swim…" aria-label="Search">
+    </label>
+    <a class="mark" href="#">lisandra</a>
+    <div class="hdr-r">
+      <button class="ico" aria-label="Wishlist">♡</button>
+      <button class="ico" aria-label="Cart, 2 items">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M5 7h14l-1.2 13H6.2L5 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><b>2</b>
+      </button>
+    </div>
+  </div>
+  <nav class="chips" aria-label="Categories">
+    <button class="chip" aria-pressed="true">New drop</button>
+    <button class="chip" aria-pressed="false">Dresses</button>
+    <button class="chip" aria-pressed="false">Sets</button>
+    <button class="chip" aria-pressed="false">Tops</button>
+    <button class="chip" aria-pressed="false">Bottoms</button>
+    <button class="chip" aria-pressed="false">Swim</button>
+    <button class="chip" aria-pressed="false">How it's made</button>
+    <button class="chip chip--sale" aria-pressed="false">Archive</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <p class="kick">Batch 07 · Cielo Tropico</p>
+    <h1>12 made.<br>Then <span class="out">never</span><br>again.</h1>
+    <p>Knit by hand in Ubud — two days per piece. When the twelve are gone, that's it.</p>
+    <div class="ctas">
+      <a class="btn btn--sun" href="#">Shop the drop</a>
+      <a class="btn btn--out" href="#">Watch it being made</a>
+    </div>
+  </div>
+  <div class="hero-media">
+    <img src="https://lisandrathelabel.com/cdn/shop/files/NEW_COLLECTION-3_9934ceb5-60f5-4a8d-b332-e375f525e03c.jpg?width=1200" alt="Cielo Tropico campaign">
+    <span class="stk" style="top:16px;left:16px">2 days by hand</span>
+    <span class="stk stk--ink stk--r" style="bottom:18px;right:16px">4 of 12 left</span>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-top">
+    <div>
+      <h2>Watch, then wear</h2>
+      <p>Every clip is shoppable. Tap the tag.</p>
+    </div>
+  </div>
+  <div class="rail">
+    <a class="clip" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/files/MEGAN_7.jpg?width=600" alt="Zaye dress clip">
+      <span class="clip-play">▶ 0:14</span>
+      <span class="clip-tag"><b>Zaye Maxi</b><span>Rp 1.999.000</span></span>
+    </a>
+    <a class="clip" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/collections/3_4d6c0bc3-b1a3-46f9-89ff-720e38cdd2c3.jpg?width=600" alt="Amara set clip">
+      <span class="clip-play">▶ 0:09</span>
+      <span class="clip-tag"><b>Amara Set</b><span>Rp 1.708.000</span></span>
+    </a>
+    <a class="clip" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/collections/5.jpg?width=600" alt="Orla swim clip">
+      <span class="clip-play">▶ 0:11</span>
+      <span class="clip-tag"><b>Orla Bikini</b><span>Rp 725.000</span></span>
+    </a>
+    <a class="clip" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/files/1_e758ea44-ebb1-49e2-a498-63c71f459410.jpg?width=600" alt="Baia crochet clip">
+      <span class="clip-play">▶ 0:18</span>
+      <span class="clip-tag"><b>Baia Crochet</b><span>Rp 1.199.000</span></span>
+    </a>
+    <a class="clip" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/collections/Untitled_design-18.jpg?width=600" alt="Mentari dress clip">
+      <span class="clip-play">▶ 0:22</span>
+      <span class="clip-tag"><b>Mentari Long</b><span>Rp 1.499.000</span></span>
+    </a>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="bento">
+    <a class="bt bt--wide" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/files/Untitled_design-17.jpg?width=1200" alt="Dresses">
+      <span class="stk" style="top:16px;left:16px">New drop</span>
+      <span class="bt-cap"><b>Dresses</b><span>9 styles, 4 in stock</span></span>
+    </a>
+    <a class="bt bt--tall" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/collections/3_4d6c0bc3-b1a3-46f9-89ff-720e38cdd2c3.jpg?width=800" alt="Sets">
+      <span class="bt-cap"><b>Sets</b><span>Save 10% as a pair</span></span>
+    </a>
+    <div class="bt bt--stat">
+      <b>2</b>
+      <span>days on the needles — one artisan, one dress</span>
+    </div>
+    <a class="bt" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/collections/5.jpg?width=700" alt="Swim">
+      <span class="bt-cap"><b>Swim</b><span>Mix your sizes</span></span>
+    </a>
+    <div class="bt bt--sun">
+      <b>Not sure on size?</b>
+      <a class="lbl" href="#" style="border-bottom:2px solid var(--ink);padding-bottom:2px">Chat WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-top">
+    <div>
+      <h2>Selling out first</h2>
+      <p>Ranked by what actually leaves.</p>
+    </div>
+    <a class="more" href="#">All 31 pieces</a>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <figure>
+        <span class="stk" style="top:12px;left:12px">4 of 12 left</span>
+        <img src="https://lisandrathelabel.com/cdn/shop/files/Untitled_design-17.jpg?width=700" alt="Zaye hand-knit maxi dress in cocoa">
+        <img src="https://lisandrathelabel.com/cdn/shop/files/MEGAN_8.jpg?width=700" alt="Zaye dress, open back">
+      </figure>
+      <h3>Zaye Hand-Knit Maxi</h3>
+      <p class="price">Rp 1.999.000</p>
+      <div class="sw-row" role="group" aria-label="Colour">
+        <button class="sw" style="background:#4a352a" aria-pressed="true" aria-label="Cocoa"></button>
+        <button class="sw" style="background:#efe3d2" aria-pressed="false" aria-label="Ivory"></button>
+      </div>
+      <p class="meta">★ 4.8 (23) · model wears XS-S, 170 cm</p>
+    </article>
+
+    <article class="card">
+      <figure>
+        <img src="https://lisandrathelabel.com/cdn/shop/collections/3_4d6c0bc3-b1a3-46f9-89ff-720e38cdd2c3.jpg?width=700" alt="Amara hand-knit top">
+        <img src="https://lisandrathelabel.com/cdn/shop/files/2_1044f32f-d221-4278-a46b-053597603c32.jpg?width=700" alt="Amara top, second view">
+      </figure>
+      <h3>Amara Hand-Knit Top</h3>
+      <p class="price">Rp 899.000</p>
+      <div class="sw-row" role="group" aria-label="Colour">
+        <button class="sw" style="background:#ddcbb2" aria-pressed="true" aria-label="Beige"></button>
+        <button class="sw" style="background:#211c1a" aria-pressed="false" aria-label="Black"></button>
+      </div>
+      <p class="meta">★ 4.9 (31) · model wears M-L, 168 cm</p>
+    </article>
+
+    <article class="card">
+      <figure>
+        <span class="stk stk--ink" style="top:12px;left:12px">2 left</span>
+        <img src="https://lisandrathelabel.com/cdn/shop/collections/Untitled_design-18.jpg?width=700" alt="Mentari hand-knit long dress">
+        <img src="https://lisandrathelabel.com/cdn/shop/files/1_3b4c41c7-3a87-48c8-a258-5db23f395d1a.jpg?width=700" alt="Mentari dress, second view">
+      </figure>
+      <h3>Mentari Hand-Knit Long</h3>
+      <p class="price">Rp 1.499.000</p>
+      <div class="sw-row" role="group" aria-label="Colour">
+        <button class="sw" style="background:#e6c469" aria-pressed="true" aria-label="Butter"></button>
+        <button class="sw" style="background:#f2ece1" aria-pressed="false" aria-label="Ivory"></button>
+      </div>
+      <p class="meta">★ 4.6 (12) · model wears XS-S, 172 cm</p>
+    </article>
+
+    <article class="card">
+      <figure>
+        <span class="stk stk--paper" style="top:12px;left:12px">Sold out</span>
+        <img src="https://lisandrathelabel.com/cdn/shop/collections/5.jpg?width=700" alt="Kayu crochet bikini set">
+      </figure>
+      <h3>Kayu Crochet Bikini Set</h3>
+      <p class="price">Rp 1.349.000</p>
+      <p class="meta"><a href="#" style="border-bottom:2px solid var(--sun);padding-bottom:1px">Tell me when it's back →</a></p>
+    </article>
+  </div>
+</section>
+
+<section class="band">
+  <h2>Twelve at a time. <em>That's the whole point.</em></h2>
+  <p>Our knitters work from home in two villages outside Ubud, paid per piece. A dress takes two days.
+     No factory, no restock button.</p>
+  <div class="bnums">
+    <div class="bnum"><b>2</b><span>Days on the needles — one artisan, one dress</span></div>
+    <div class="bnum"><b>12</b><span>Pieces in a batch, then the style rests</span></div>
+    <div class="bnum"><b>9</b><span>Artisans in two villages, paid per piece</span></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-top">
+    <div><h2>Cheaper as a pair</h2><p>Same dye lot, so the colour actually matches.</p></div>
+  </div>
+  <div class="set">
+    <figure><img src="https://lisandrathelabel.com/cdn/shop/collections/3_4d6c0bc3-b1a3-46f9-89ff-720e38cdd2c3.jpg?width=800" alt="Amara top"></figure>
+    <figure><img src="https://lisandrathelabel.com/cdn/shop/files/2_34953080-8e76-4225-b7d0-3a776f32c85e.jpg?width=800" alt="Amara wrap skirt"></figure>
+    <div class="set-copy">
+      <h3>The Amara Set</h3>
+      <p>Top + wrap skirt, knit from one dye lot. Buy them together, pay 10% less.</p>
+      <p class="set-price"><s>Rp 1.898.000</s> Rp 1.708.000</p>
+      <a class="btn btn--block" href="#">Add the set</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-top">
+    <div>
+      <h2>In the making</h2>
+      <p>Dari workshop di dua desa dekat Ubud. Tanpa mesin, tanpa tombol restock.</p>
+    </div>
+    <div class="more-row">
+      <a class="more more--out" href="https://www.tiktok.com/@lisandra.thelabel" target="_blank" rel="noopener">More on TikTok &#8599;</a>
+    </div>
+  </div>
+
+  <div class="rail" style="margin-bottom:18px">
+    <a class="clip" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/files/1_e758ea44-ebb1-49e2-a498-63c71f459410.jpg?width=600" alt="Proses merajut">
+      <span class="clip-play">&#9654; 0:31</span>
+      <span class="clip-tag clip-tag--wide"><b>Day one on the needles</b></span>
+    </a>
+    <a class="clip" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/files/MEGAN_7.jpg?width=600" alt="Detail manik dipasang tangan">
+      <span class="clip-play">&#9654; 0:24</span>
+      <span class="clip-tag clip-tag--wide"><b>Setting the beads by hand</b></span>
+    </a>
+    <a class="clip" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/files/2_1044f32f-d221-4278-a46b-053597603c32.jpg?width=600" alt="Benang">
+      <span class="clip-play">&#9654; 0:19</span>
+      <span class="clip-tag clip-tag--wide"><b>Where the yarn comes from</b></span>
+    </a>
+    <a class="clip" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/files/2_34953080-8e76-4225-b7d0-3a776f32c85e.jpg?width=600" alt="Menyelesaikan satu batch">
+      <span class="clip-play">&#9654; 0:27</span>
+      <span class="clip-tag clip-tag--wide"><b>Finishing a batch of twelve</b></span>
+    </a>
+    <a class="clip" href="#">
+      <img src="https://lisandrathelabel.com/cdn/shop/files/1_3b4c41c7-3a87-48c8-a258-5db23f395d1a.jpg?width=600" alt="Pagi di workshop">
+      <span class="clip-play">&#9654; 0:42</span>
+      <span class="clip-tag clip-tag--wide"><b>A morning in the workshop</b></span>
+    </a>
+  </div>
+
+  <div class="qcards">
+    <div class="qcard">
+      <h3>Which size am I?</h3>
+      <p>Rajutnya melar, jadi satu ukuran mencakup rentang badan yang lebih lebar dari baju biasa.
+         Ragu? Kirim ukuran badanmu lewat WhatsApp &#8212; kami jawab jujur, dan itu jauh lebih baik
+         daripada memproses retur. <span class="tmpl">(template)</span></p>
+      <a href="#">Lihat size guide &#8594;</a>
+    </div>
+    <div class="qcard">
+      <h3>Kapan sampai?</h3>
+      <p>Dikirim 1&#8211;2 hari kerja. Gratis ongkir se-Indonesia, dan gratis ke luar negeri di atas
+         USD 200. Retur 14 hari selama belum dipakai dan label masih menempel.
+         <span class="tmpl">(template)</span></p>
+      <a href="#">Pengiriman &amp; retur &#8594;</a>
+    </div>
+    <div class="qcard">
+      <h3>Awet nggak?</h3>
+      <p>Cuci tangan air dingin, jangan diperas, jemur mendatar, simpan dilipat. Kalau ada yang
+         lepas atau sobek, kirim balik ke kami &#8212; diperbaiki, bukan diganti.
+         <span class="tmpl">(template)</span></p>
+      <a href="#">Care &amp; repair &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="foot-top">
+    <h2>Next batch drops in 3 weeks. The list hears first.</h2>
+    <div class="nl">
+      <input type="email" placeholder="Email" aria-label="Email">
+      <button type="button">Get 10% off</button>
+    </div>
+  </div>
+  <nav class="foot-links">
+    <a href="#">Size guide</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">FAQs</a>
+    <a href="#">How it's made</a><a href="#">Stockists</a><a href="#">Contact</a>
+    <a href="#">TikTok</a><a href="#">Instagram</a>
+  </nav>
+  <div class="foot-btm">
+    <span>© 2026 Lisandra The Label · Made in Bali</span>
+    <div class="pays">
+      <span class="pay">QRIS</span><span class="pay">VA</span><span class="pay">GoPay</span>
+      <span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">PayPal</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.sw,.chip');
+  if(!b)return;
+  var g=b.closest('.sw-row,.chips');
+  g.querySelectorAll('[aria-pressed]').forEach(function(x){
+    x.setAttribute('aria-pressed',x===b?'true':'false');});
+});
+</script>
+</body>
+</html>
