@@ -1,7 +1,7 @@
 /* Showcase shell — vanilla, tanpa build step, tanpa dependency.
    Fitur: pill selector, viewport switcher (lebar iframe px NYATA), mode banding,
-   deep link (#id / #compare=a,b), panel catatan (dari versions.json), banner
-   peringatan persisten, dan navigasi keyboard.
+   deep link (#id / #compare=a,b), panel catatan (dari versions.json), dan
+   navigasi keyboard.
    File di showcase/versions/ TIDAK pernah disentuh — semuanya lewat iframe. */
 
 'use strict';
